@@ -3,20 +3,24 @@
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
 }
+body{
+        
+            /* background-color: rgb(20, 45, 156); */
+}
 .container{
     width: 100%;
     height: 100vh;
     display: flex;
     padding: 1 em;
-    background-color: #f1f1f1;
+    /* background-color: rgb(0, 60, 255); */
 
 }
 .login{
-    background-color: orange;
+    background-color: rgb(20, 51, 155);
     border : 1px solid #ccc;
     width: 50%;
     height: 50%;
-    margin:  auto;
+    /* margin:  auto; */
     padding: 25px;
 }
 .container .login{
