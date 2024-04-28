@@ -7,7 +7,7 @@ $mysqli="";
 
 $mysqli = new mysqli($host, $username, $password, $dbname);
 if ($mysqli) {
-    echo '<strong>You Are Connected</strong>';
+        echo '<strong>DATABASE Connected</strong>.<br>';
 } else {
     echo 'connection failed';
 }
