@@ -1,126 +1,126 @@
+
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="fr"></html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOG OUT</title>
+    <title>LOG IN </title>
 
-    <!-- Styles -->
+    <!-- Estilos -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <!-- JS -->
     <script type="text/javascript" src="js/validation.js"></script>
 
-    <!-- Favicon -->
-    <link href="img/EV_favicon.ico" rel="icon"/>  
+
 </head>
 <body>
-    <section class="ev__user--section-container">
-        <div id="js-login-popup" class="ev__user--box-signin-container">
-            <div class="ev__user--img-container">
-                <img src="img/log-img.jpg" alt="Login User"/>
-            </div>
-            <div class="ev__user--box-form-container">
-                <form name="form1" action="login.html" 
-                    method="GET" onsubmit="return validarFormLogin(this);">
-                    <h1>WELCOME BACK</h1>
-                    <div class="ev__user--items-container">
-                        <label for="email_sigin"></label>
-                        <input type="text"
-                            name="email"
-                            placeholder="Email Address"
-                            onfocus="this.select();"
-                            required>
-
-                        <label for="password"></label>
-                        <input type="password" 
-                            name="password"
-                            placeholder="Password"
-                            onfocus="this.select();"
-                            required>
-                    </div>
-                    <div class="ev__user--button-container">
-                        <input class="ev__user--button-success" type="submit" value="Sign In">
-                        <input class="ev__user--button-info" type="reset" value="Clear">
-                    </div>
-                    <div class="ev__user--options-container">
-                        <div>
-                            <p>Forgot password? 
-                                <a href="#">
-                                    Recover password
-                                </a>
-                            </p>
-                        </div>
-                     
-                    </div>                    
-                </form>
-            </div>
-            <div class="ev__user--img-mobile-container">
-                <img src="img/log-img.jpg" alt="Login User"/>
-            </div>
+<section class="ev__user--section-container">
+    <div id="js-login-popup" class="ev__user--box-signin-container">
+        <div class="ev__user--img-container">
+            <img src="img/ensah.png" alt="Utilisateur de connexion"/>
         </div>
-        <div id="js-register-popup" class="ev__user--box-signup-container">
-            <div class="ev__user--img-signup-container">
-                <img src="img/grey_register.jpg" alt="Registration User"/>
-            </div>
-            <div class="ev__user-signup--box-form-container">
-                <form name="form2" action="/index.html" 
-                    method="GET" onsubmit="return validarFormRegister(this);">
-                    <h1>Sign Up</h1>
-                    <div class="ev__user-signup--items-container">
-                        <label for="email">
-                            Name: <span class="itemR" onclick="infoNombre()">(*)</span>
-                        </label>
-                        <input 
+        <div class="ev__user--box-form-container">
+            <form name="form1" action="test/login.html"
+                  method="GET" onsubmit="return validarFormLogin(this);">
+                <h1>WELCOME <br>BACK</h1>
+                <div class="ev__user--items-container">
+                    <label for="email_sigin"></label>
+                    <input type="text"
+                           name="email"
+                           placeholder="Adresse e-mail"
+                           onfocus="this.select();"
+                           required>
+
+                    <label for="password"></label>
+                    <input type="password"
+                           name="password"
+                           placeholder="Mot de passe"
+                           onfocus="this.select();"
+                           required>
+                </div>
+                <div class="ev__user--button-container">
+                    <input class="ev__user--button-success" type="submit" value="Se connecter">
+                    <input class="ev__user--button-info" type="reset" value="Effacer">
+                </div>
+                <div class="ev__user--options-container">
+                    <div>
+                        <p>Mot de passe oublié ?
+                            <a href="#">
+                                Récupérer le mot de passe
+                            </a>
+                        </p>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="ev__user--img-mobile-container">
+            <img src="img/ensah.png" alt="Utilisateur de connexion"/>
+        </div>
+    </div>
+    <div id="js-register-popup" class="ev__user--box-signup-container">
+        <div class="ev__user--img-signup-container">
+            <img src="img/grey_register.jpg" alt="Utilisateur d'inscription"/>
+        </div>
+        <div class="ev__user-signup--box-form-container">
+            <form name="form2" action="/index.html"
+                  method="GET" onsubmit="return validarFormRegister(this);">
+                <h1>S'inscrire</h1>
+                <div class="ev__user-signup--items-container">
+                    <label for="email">
+                        Nom : <span class="itemR" onclick="infoNombre()">(*)</span>
+                    </label>
+                    <input
                             type="text"
-                            name="usuario" 
-                            placeholder="Username"
+                            name="usuario"
+                            placeholder="Nom d'utilisateur"
                             onfocus="this.select();">
 
-                        <label for="email_sigup">
-                            Email: <span class="itemR" onclick="infoEmail()">(*)</span>
-                        </label>
-                        <input 
+                    <label for="email_sigup">
+                        Courrier : <span class="itemR" onclick="infoEmail()">(*)</span>
+                    </label>
+                    <input
                             type="text"
                             name="email"
-                            placeholder="Email Address"
+                            placeholder="Adresse e-mail"
                             onfocus="this.select();">
 
-                        <label for="password1">
-                            Password: <span class="itemR" onclick="infoPassword()">(*)</span>
-                        </label>
-                        <input 
+                    <label for="password1">
+                        Mot de passe : <span class="itemR" onclick="infoPassword()">(*)</span>
+                    </label>
+                    <input
                             type="password"
-                            name="password" 
-                            placeholder="Password"
+                            name="password"
+                            placeholder="Mot de passe"
                             onfocus="this.select();">
-                        <input 
+                    <input
                             type="password"
                             name="password2"
-                            placeholder="Confirm Password"
+                            placeholder="Confirmer le mot de passe"
                             onfocus="this.select();">
+                </div>
+                <div class="ev__user--button-container">
+                    <input class="ev__user--button-info" type="reset" value="Effacer">
+                </div>
+                <div class="ev__user--options-container">
+                    <div>
+                        <p>
+                            Vous avez déjà un compte ?
+                            <a id="js-login-toggle" href="#">
+                                Se connecter
+                            </a>
+                        </p>
                     </div>
-                    <div class="ev__user--button-container">
-                        <input class="ev__user--button-info" type="reset" value="Clear">
-                    </div>
-                    <div class="ev__user--options-container">
-                        <div>
-                            <p>
-                                Already have an account? 
-                                <a id="js-login-toggle" href="#">
-                                    Sign In
-                                </a>
-                            </p>
-                        </div>
-                    </div>                    
-                </form>
-            </div>
-            <div class="ev__user--img-signup-mobile-container">
-                <img src="img/grey_register.jpg" alt="Registration User"/>
-            </div>
+                </div>
+            </form>
         </div>
-    </section>
+        <div class="ev__user--img-signup-mobile-container">
+            <img src="img/grey_register.jpg" alt="Utilisateur d'inscription"/>
+        </div>
+    </div>
+</section>
 </body>
 </html>
 

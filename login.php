@@ -1,11 +1,11 @@
 <?php
 global $mysqli;
 include('database.php');
-    $sql="INSERT INTO etudiant (nom, prenom, email,password, id_filiere, id_promo)
-    VALUES ('ADNABES', 'Salma', 'boukhari.salma@etu.uae.ac.ma', '9988', '4', '14'); ";
-    mysqli_query($mysqli, $sql);
+//    $sql="INSERT INTO etudiant (nom, prenom,CIN,CNE,Sexe,Date_naissance,Email,Tel,Mdp, idAdmin, idFiliere)
+//    VALUES ('boukhari', 'Salma',0123,4567,F,01/02/2002, 'boukhari.salma@etu.uae.ac.ma', 06508080,'9988', '4', '14'); ";
+//    mysqli_query($mysqli, $sql);
 
-    mysqli_close($mysqli);
+//    mysqli_close($mysqli);
 ?>
 <!DOCTYPE html>
 <html lang="fr"></html>
@@ -30,9 +30,9 @@ include('database.php');
             <img src="img/ensah.png" alt="Utilisateur de connexion"/>
         </div>
         <div class="ev__user--box-form-container">
-            <form name="form1" action="login.html"
+            <form name="form1" action="test/login.html"
                   method="GET" onsubmit="return validarFormLogin(this);">
-                <h1>WELCOME TO E-SERVICE</h1>
+                <h1>WELCOME <br>TO<br> E-SERVICE</h1>
                 <div class="ev__user--items-container">
                     <label for="email_sigin"></label>
                     <input type="text"
