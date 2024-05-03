@@ -1,19 +1,23 @@
 <?php
-$host = "localhost";
+global $db;
+$host       = 'localhost:3308';
 $username = "root";
+$database  = "project-web";
 $password = "";
-$dbname = "project-web";
-$conn=null;
 
 try {
-    $conn =  mysqli_connect($host, $username, $password, $dbname);
-} catch (mysqli_sql_exception $e) {
-    echo "Connection failed:" . $e->getMessage(). '<br>';
+
+    $db = new PDO("mysql:host=$host;dbname=project-web", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully<br>";
+   /* $res=$mysqli->query('SELECT * FROM etudiant');
+    $res->execute();
+    $row=$res->fetch();
+    var_dump($row);*/
+
+}catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage()."<br>";
 }
 
 
-if ($conn) {
-        echo '<strong>DATABASE Connected</strong>.<br>';
-} else {
-    echo 'connection failed.<br>';
-}
+

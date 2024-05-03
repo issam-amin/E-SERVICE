@@ -1,14 +1,8 @@
 <?php
-global $mysqli;
-include('database.php');
-//    $sql="INSERT INTO etudiant (nom, prenom,CIN,CNE,Sexe,Date_naissance,Email,Tel,Mdp, idAdmin, idFiliere)
-//    VALUES ('boukhari', 'Salma',0123,4567,F,01/02/2002, 'boukhari.salma@etu.uae.ac.ma', 06508080,'9988', '4', '14'); ";
-//    mysqli_query($mysqli, $sql);
-
-//    mysqli_close($mysqli);
+session_start();
 ?>
 <!DOCTYPE html>
-<html lang="fr"></html>
+<html lang="fr"></html
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,11 +21,11 @@ include('database.php');
 <section class="ev__user--section-container">
     <div id="js-login-popup" class="ev__user--box-signin-container">
         <div class="ev__user--img-container">
-            <img src="img/ensah.png" alt="Utilisateur de connexion"/>
+            <img src="img/ensah.png" alt="Utilisateur de connexion" />
         </div>
         <div class="ev__user--box-form-container">
-            <form name="form1" action="test/login.html"
-                  method="GET" onsubmit="return validarFormLogin(this);">
+            <form name="form1" action="connect.php"
+                  method="POST" <!--onsubmit="return validarFormLogin(this);-->">
                 <h1>WELCOME <br>TO<br> E-SERVICE</h1>
                 <div class="ev__user--items-container">
                     <label for="email_sigin"></label>
@@ -49,7 +43,7 @@ include('database.php');
                            required>
                 </div>
                 <div class="ev__user--button-container">
-                    <input class="ev__user--button-success" type="submit" value="Se connecter">
+                    <input class="ev__user--button-success" type="submit" value="Se connecter" name="connect">
                     <input class="ev__user--button-info" type="reset" value="Effacer">
                 </div>
                 <div class="ev__user--options-container">
@@ -66,66 +60,6 @@ include('database.php');
         </div>
         <div class="ev__user--img-mobile-container">
             <img src="img/ensah.png" alt="Utilisateur de connexion"/>
-        </div>
-    </div>
-    <div id="js-register-popup" class="ev__user--box-signup-container">
-        <div class="ev__user--img-signup-container">
-            <img src="img/grey_register.jpg" alt="Utilisateur d'inscription"/>
-        </div>
-        <div class="ev__user-signup--box-form-container">
-            <form name="form2" action="/index.html"
-                  method="GET" onsubmit="return validarFormRegister(this);">
-                <h1>S'inscrire</h1>
-                <div class="ev__user-signup--items-container">
-                    <label for="email">
-                        Nom : <span class="itemR" onclick="infoNombre()">(*)</span>
-                    </label>
-                    <input
-                            type="text"
-                            name="usuario"
-                            placeholder="Nom d'utilisateur"
-                            onfocus="this.select();">
-
-                    <label for="email_sigup">
-                        Courrier : <span class="itemR" onclick="infoEmail()">(*)</span>
-                    </label>
-                    <input
-                            type="text"
-                            name="email"
-                            placeholder="Adresse e-mail"
-                            onfocus="this.select();">
-
-                    <label for="password1">
-                        Mot de passe : <span class="itemR" onclick="infoPassword()">(*)</span>
-                    </label>
-                    <input
-                            type="password"
-                            name="password"
-                            placeholder="Mot de passe"
-                            onfocus="this.select();">
-                    <input
-                            type="password"
-                            name="password2"
-                            placeholder="Confirmer le mot de passe"
-                            onfocus="this.select();">
-                </div>
-                <div class="ev__user--button-container">
-                    <input class="ev__user--button-info" type="reset" value="Effacer">
-                </div>
-                <div class="ev__user--options-container">
-                    <div>
-                        <p>
-                            Vous avez déjà un compte ?
-                            <a id="js-login-toggle" href="#">
-                                Se connecter
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="ev__user--img-signup-mobile-container">
-            <img src="img/grey_register.jpg" alt="Utilisateur d'inscription"/>
         </div>
     </div>
 </section>
