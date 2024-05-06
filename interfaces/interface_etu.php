@@ -1,4 +1,10 @@
-
+<?php
+session_start();
+if (!isset($_SESSION['autoriser'])){
+    header('Location: ../interfaces/login.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +30,10 @@
 <body>
     
     <header class="header">
-    <?php include '../interface/bar_etu.php';?>
+    <?php include '../navigations/navigation_etu.php';?>
     </header>
     <main class="main">
-        <?php include '../interface/index.php';?>
+        <?php include '../navigations/index.php';?>
     </main>
 
 

@@ -24,14 +24,14 @@ function validarFormLogin(formulaire) {
 
     // Valider le mot de passe
     var password = formulaire.password;
-    /!*if (password.value === "" || password.value.length < 8) {
-        alert("Veuillez fournir un mot de passe d'au moins 8 caractères");
+    if (password.value === "" || password.value.length < 6) {
+        alert("Veuillez fournir un mot de passe d'au moins 6 caractères");
         password.focus();
         password.select();
         return false;
-    }*!/
+    }
 
-    /!*if (!checkPassword(password.value)) {
+  /!*  if (!checkPassword(password.value)) {
         alert("Le mot de passe doit contenir entre 8 et 16 caractères, au moins un chiffre, une minuscule et une majuscule. Il ne peut pas contenir d'autres symboles");
         password.focus();
         password.select();

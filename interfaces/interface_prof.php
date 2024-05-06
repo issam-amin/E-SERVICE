@@ -24,10 +24,10 @@
 <body>
     
     <header class="header">
-    <?php require_once '../interface/bar_prof.php';?>
+    <?php require_once '../navigations/navigation_prof.php';?>
     </header>
     <main class="main">
-        <?php require_once '../interface/index.php';?>
+        <?php require_once '../navigations/index.php';?>
     </main>
 
 
