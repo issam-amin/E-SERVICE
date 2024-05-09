@@ -26,10 +26,10 @@ session_start();
             <input placeholder="Search" type="search" class="input">
           </div>
 
-<?php echo "<span class='name'>Bienvenu ".$_SESSION['nom']." ".$_SESSION['prenom']."</span>";?>
+<?php echo "<span class='name'>Bienvenue ".$_SESSION['nom']." ".$_SESSION['prenom']."</span>";?>
     <div class="topBar_right ">
         <!--LOG OUT BUTTUN-->
-        <a href="../WEB_PROJECT/navigations/logout.php">
+        <a href="../interfaces/logout.php">
             <i class='bx bx-log-out icon' ></i>
         </a>
         <a href="#" >
@@ -58,7 +58,7 @@ session_start();
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../interfaces/interface_etu.php">
+                        <a href="interface_etu.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -90,7 +90,7 @@ session_start();
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="../WEB_PROJECT/navigations/logout.php">
+                    <a href="../interfaces/logout.php">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -125,6 +125,8 @@ session_start();
       modeText = body.querySelector(".mode-text");
       topBar = body.querySelector(".topBar");
       omar = body.querySelector(".svg_profil");
+      logOut = body.querySelector(".bx-log-out");
+      topBarname = body.querySelector(".name");
 
 
 toggle.addEventListener("click" , () =>{
@@ -140,10 +142,14 @@ modeSwitch.addEventListener("click" , () =>{
         modeText.innerText = "Light mode";
         topBar.classList.toggle("topBarDark");
         omar.classList.toggle("svg_profil_dark");
+        logOut.classList.toggle("bx-log-out_dark");
+        topBarname.classList.toggle("name_dark");
     }else{
         modeText.innerText = "Dark mode";
         topBar.classList.toggle("topBarDark");
         omar.classList.toggle("svg_profil_dark");
+        logOut.classList.toggle("bx-log-out_dark");
+        topBarname.classList.toggle("name_dark");
     }
 });
     </script>

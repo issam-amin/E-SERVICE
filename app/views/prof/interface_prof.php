@@ -1,16 +1,12 @@
 <?php
-session_start();
-if (!isset($_SESSION['autoriser'])){
-    header('Location: ../interfaces/login.php');
-    exit();
-}
+include '../../../securite.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface Etudiant</title>
+    <title>Interface Professeur</title>
     <style>
         .container{
             margin-top: 20px;
@@ -22,7 +18,7 @@ if (!isset($_SESSION['autoriser'])){
         }
         .main{
             margin-top: 7rem;
-            margin-left: 8rem;
+            margin-left: 3rem;
             margin-right: 3rem;
         }
     </style>
@@ -30,10 +26,10 @@ if (!isset($_SESSION['autoriser'])){
 <body>
     
     <header class="header">
-    <?php include '../navigations/navigation_etu.php';?>
+    <?php require_once '../navigations/navigation_prof.php';?>
     </header>
     <main class="main">
-        <?php include '../navigations/index.php';?>
+        <?php require_once '../navigations/index.php';?>
     </main>
 
 

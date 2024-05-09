@@ -1,10 +1,12 @@
-
+<?php
+include '../../../securite.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface Professeur</title>
+    <title>Interface Etudiant</title>
     <style>
         .container{
             margin-top: 20px;
@@ -16,7 +18,7 @@
         }
         .main{
             margin-top: 7rem;
-            margin-left: 3rem;
+            margin-left: 8rem;
             margin-right: 3rem;
         }
     </style>
@@ -24,10 +26,10 @@
 <body>
     
     <header class="header">
-    <?php require_once '../navigations/navigation_prof.php';?>
+    <?php include '../navigations/navigation_etu.php';?>
     </header>
     <main class="main">
-        <?php require_once '../navigations/index.php';?>
+        <?php include '../navigations/index.php';?>
     </main>
 
 

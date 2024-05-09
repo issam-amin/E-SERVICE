@@ -2,14 +2,14 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Times New Roman','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'tahoma','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .ev__user--section-container {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: radial-gradient(102.68% 27.27% at 152.68% 72.73%, rgb(20, 101, 155,0.7) 0%, rgba(0, 0, 0, 0) 100%),
+    background: radial-gradient(102.68% 27.27% at 152.68% 72.73%, rgb(112, 112, 112,0.7) 0%, rgba(0, 0, 0, 0) 100%),
         radial-gradient(108.26% 108.26% at -15.77% -8.26%, rgb(20, 145, 155) 0%, rgba(20, 101, 155, 0.7) 100%);
 
     box-sizing: border-box;

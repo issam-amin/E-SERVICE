@@ -25,7 +25,7 @@ session_start();
 <section class="ev__user--section-container">
     <div id="js-login-popup" class="ev__user--box-signin-container">
         <div class="ev__user--img-container">
-            <img src="../img/ensah.png" alt="Utilisateur de connexion">
+            <img src="../img/ensah.png" alt="Utilisateur de connexion" style="height: 30rem ;width: 26rem">
         </div>
         <div class="ev__user--box-form-container">
             <form name="form1" action="../connect.php"

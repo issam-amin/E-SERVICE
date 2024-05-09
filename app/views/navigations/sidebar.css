@@ -371,7 +371,7 @@ body.dark .home .text{
     height: 1rem;
    }
    
-.svg_profil{
+.svg_profil {
     margin-right:2.5rem;
     fill: rgb(92, 92, 92);
 
@@ -385,6 +385,27 @@ body.dark .home .text{
     width: 10rem;
     align-items: center;
     justify-content:  space-between;
+}
+/*logout button in the topbar*/
+.bx-log-out{
+    color: #5c5c5c;
+    width: 36px;
+    height: 26px;
+    cursor: pointer;
+    transition: var(--tran-03);
+
+}
+.bx-log-out_dark{
+    color: #a5a5a5;
+}
+.name{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #5c5c5c;
+    margin-right: 1rem;
+}
+.name_dark{
+    color: #a5a5a5;
 }
 
    
