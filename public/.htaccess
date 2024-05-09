@@ -1,0 +1,6 @@
+RewriteEngine On
+#accept loading of actual files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# send everything  else to login.php
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
