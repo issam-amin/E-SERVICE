@@ -26,7 +26,7 @@ session_start();
             <input placeholder="Search" type="search" class="input">
           </div>
 
-<!-- <?php echo "<span class='name'>Bienvenue ".$_SESSION['nom']." ".$_SESSION['prenom']."</span>";?> -->
+<?php echo "<span class='name'>Bienvenue ".$_SESSION['Nom']." ".$_SESSION['Prenom']."</span>";?>
     <div class="topBar_right ">
         <!--LOG OUT BUTTUN-->
         <a href="../../logout.php">

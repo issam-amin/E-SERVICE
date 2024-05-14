@@ -1,5 +1,13 @@
 <?php
 session_start();
+// if (isset($_POST['connect'])) {
+//     if (!(isset($_POST['email']) && isset($_POST['password']))) {
+        
+//             echo "LOGIN ou mot de passe incorrect";
+//         }
+   
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr"></html

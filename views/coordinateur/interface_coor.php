@@ -1,5 +1,6 @@
 <?php
-// include '../../../securite.php'
+session_start();
+include '../../securite.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,7 @@
         }
         .main{
             margin-top: 7rem;
-            margin-left: 3rem;
+            margin-left: 7rem;
             margin-right: 3rem;
         }
     </style>

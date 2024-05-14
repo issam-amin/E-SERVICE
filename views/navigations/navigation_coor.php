@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +24,7 @@ session_start();
             <input placeholder="Search" type="search" class="input">
           </div>
 
-<!-- <?php echo "<span class='name'>Bienvenue ".$_SESSION['nom']." ".$_SESSION['prenom']."</span>";?> -->
-    <div class="topBar_right ">
+          <?php echo "<span class='name'>Bienvenue ".$_SESSION['Nom']." ".$_SESSION['Prenom']."</span>";?>    <div class="topBar_right ">
         <!--LOG OUT BUTTUN-->
         <a href="../../logout.php">
             <i class='bx bx-log-out icon' ></i>
@@ -45,7 +42,7 @@ session_start();
                 </span>
 
                 <div class="text logo-text">
-                    <span class="name">Espace  Coordinateur</span>
+                    <span class="name">Espace  <br> Coordinateur</span>
                     <span class="profession">Menu</span>
                 </div>
             </div>
@@ -58,7 +55,8 @@ session_start();
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../etudiant/interface_prof.php">
+                        <!-- <a href="../../routing/routing.php?action=home"> -->
+                        <a href="../coordinateur/interface_coor.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -66,18 +64,25 @@ session_start();
 
                    
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../../routing/routing.php?action=noteCoor">
                             <i class='bx bxs-graduation icon'></i>
                             <span class="text nav-text">Publier Notes</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../../routing/routing.php?action=module">
                             <i class='bx bx-git-pull-request icon'></i>
-                            <span class="text nav-text">Publier Cours</span>
+                            <span class="text nav-text">Consulter liste <br> Modules</span>
                         </a>
                     </li>
                 
+
+                    <li class="nav-link">
+                        <a href="../../routing/routing.php?action=etudiant">
+                        <i class='bx bx-git-pull-request icon'></i>
+                            <span class="text nav-text">Consulter liste <br>Etudiants</span>
+                        </a>
+                    </li>
 
                     <li class="nav-link">
                         <a href="#">
@@ -85,6 +90,7 @@ session_start();
                             <span class="text nav-text">Notifications</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
 

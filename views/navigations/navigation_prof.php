@@ -12,6 +12,7 @@ session_start();
     <style>
        <?php include '../navigations/sidebar.css';?>
     </style>
+   
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     
@@ -26,7 +27,7 @@ session_start();
             <input placeholder="Search" type="search" class="input">
           </div>
 
-<!-- <?php echo "<span class='name'>Bienvenue ".$_SESSION['nom']." ".$_SESSION['prenom']."</span>";?> -->
+<?php echo "<span class='name'>Bienvenue ".$_SESSION['Nom']." ".$_SESSION['Prenom']."</span>";?>
     <div class="topBar_right ">
         <!--LOG OUT BUTTUN-->
         <a href="../../logout.php">
@@ -45,7 +46,7 @@ session_start();
                 </span>
 
                 <div class="text logo-text">
-                    <span class="name">Espace <br> Prof</span>
+                    <span class="name">Espace <br> Professeur</span>
                     <span class="profession">Menu</span>
                 </div>
             </div>
@@ -58,7 +59,7 @@ session_start();
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../etudiant/interface_prof.php">
+                        <a href="../prof/interface_prof.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -72,12 +73,19 @@ session_start();
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../prof/PubCour.php">
                             <i class='bx bx-git-pull-request icon'></i>
                             <span class="text nav-text">Publier Cours</span>
                         </a>
                     </li>
-                
+
+                    <li class="nav-link">
+                      
+                        <a href="../../routing/routing.php?action=show">
+                            <i class='bx bx-list-ul icon'></i>
+                            <span class="text nav-text">Consulter liste <br> Etudiant</span>
+                        </a>
+                    </li>
 
                     <li class="nav-link">
                         <a href="#">
@@ -85,6 +93,7 @@ session_start();
                             <span class="text nav-text">Notifications</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
 

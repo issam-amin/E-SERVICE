@@ -1,13 +1,13 @@
 <?php
 global $db;
-$host       = 'localhost:3308';
+$host       = 'localhost:3306';
 $username = "root";
-$database  = "project-web";
-$password = "";
+$database  = "projectweb";
+$password = "1234567";
 
 try {
 
-    $db = new PDO("mysql:host=$host;dbname=project-web", $username, $password);
+    $db = new PDO("mysql:host=$host;dbname=projectweb", $username, $password);
 /*    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);*/
     echo "Connected successfully<br>";
    }catch (PDOException $e) {

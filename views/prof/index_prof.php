@@ -73,6 +73,7 @@
                             -5px -5px 3px #e1e1e1;
                 }
                 .mainContainer{
+                    margin-left: 5rem;
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     place-items: center;

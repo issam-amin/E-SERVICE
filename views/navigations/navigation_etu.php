@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@ session_start();
             <input placeholder="Search" type="search" class="input">
           </div>
 
-<?php echo "<span class='name'>Bienvenue ".ucfirst($_SESSION['prenom'])." ".ucfirst($_SESSION['nom'])."</span>";?>
+<?php echo "<span class='name'>Bienvenue ".ucfirst($_SESSION['Prenom'])." ".ucfirst($_SESSION['Nom'])."</span>";?>
     <div class="topBar_right ">
         <!--LOG OUT BUTTUN-->
         <a href="../../logout.php">
@@ -66,9 +66,9 @@ session_start();
 
                    
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../etudiant/ConsulterCour.php">
                             <i class='bx bxs-graduation icon'></i>
-                            <span class="text nav-text">Cours</span>
+                            <span class="text nav-text">Consulter Cours</span>
                         </a>
                     </li>
                     <li class="nav-link">
