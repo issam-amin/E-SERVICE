@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +25,7 @@ session_start();
             <input placeholder="Search" type="search" class="input">
           </div>
 
-<?php echo "<span class='name'>Bienvenue ".$_SESSION['Nom']." ".$_SESSION['Prenom']."</span>";?>
+<!-- <?php echo "<span class='name'>Bienvenue ".$_SESSION['Nom']." ".$_SESSION['Prenom']."</span>";?> -->
     <div class="topBar_right ">
         <!--LOG OUT BUTTUN-->
         <a href="../../logout.php">
@@ -67,7 +65,7 @@ session_start();
 
                    
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../../routing/routing.php?action=profNote">
                             <i class='bx bxs-graduation icon'></i>
                             <span class="text nav-text">Publier Notes</span>
                         </a>

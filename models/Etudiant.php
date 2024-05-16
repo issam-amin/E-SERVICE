@@ -15,22 +15,17 @@ class Etudiant
         $result = $res->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function GetEtudiantByfiliere($idfiliere)
-    {
+    public function getEtubyNiv($idniv){
         global $db;
-        $res = $db->prepare("SELECT * FROM etudiant JOIN filiere ON etudiant.IdFiliere = filiere.IdFiliere 
-        WHERE etudiant.IdFiliere = ?");
-        $params = array($idfiliere);
-        $res->execute($params);
-        $result = $res->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT Nom,Prenom FROM etudiant WHERE IdNiveau =:Idniveau";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':Idniveau', $idniv, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Fetch the result as an associative array
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+
     }
-    public function InsertEtu($nom, $prenom, $dateN, $cin, $email, $password, $etat, $cne, $niveau, $specialisation, $anneeS, $idfiliere)
-    {
-        global $db;
-        $res = $db->prepare("INSERT INTO etudiant VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $params = array($nom, $prenom, $dateN, $cin, $email, $password, 1, $cne, $niveau, $specialisation, $anneeS, $idfiliere);
-        $res->execute($params);
-        return $res;
-    }
+ 
 }

@@ -11,8 +11,10 @@ if(isset($_POST['connect'])){
     $user->login($email, $password);
 
 }
+if(isset($_GET['action'])){
 switch ($_GET['action'])
 {
+    // COORDINATEUR
     case 'module':
         session_start();
         require_once '../controllers/ControllerNiveau.php';
@@ -47,13 +49,71 @@ switch ($_GET['action'])
     case 'noteCoor':
         session_start();
         require_once '../controllers/ControllerNote.php';
+        // recuperation de ID 
         $note = new ControllerNote();
         $id = $_SESSION['IdUser'];
-        $test = $note->cooruserfilier($id);
-        $_SESSION['notes']=$test;
-        //var_dump($_SESSION);
-
+        $_SESSION['profs']= $note->cooruserfilier($id);
+        echo "<br>";
+        //  
+        // foreach ($_SESSION['profs'] as $Prof){
+        //     $idProf=$Prof['IdProf'];
+        //     $_SESSION['modules_profs']=$note->getmodbyidprof($idProf);
+        //     foreach ($_SESSION['modules_profs'] as $module) {
+        //         echo "<a href=\"../../routing/routing.php?id=" . $module['IdProf'] . "\" class=\"btn btn-primary\">Voir</a>";
+        //     }
+        //     echo "<br>";
+        //     // var_dump($_SESSION['modules_profs']);echo "<br>";
+        // }
+        
         header("location:../views/coordinateur/PublierNote.php");
         exit();
+        break;
+        
+        // PROFESSEUR
+        case 'profNote':
+            session_start();
+            // recuperation de id  prof
+            require_once'../controllers/ControllerProf.php';
+            $prof=new ControllerProf(); 
+            $test=$prof->getprofbyuser($_SESSION['IdUser']);
+            // recuperation des modules du profs
+            require_once '../controllers/ControllerNote.php';
+            $test1 = new ControllerNote();
+            $_SESSION['modules_Specifique_Prof']=$test1->getmodbyidprof($test['IdProf']);
+            // var_dump($_SESSION['modules_Specifique_Prof']);
+            header("location:../views/prof/noteEtu.php");
+            exit();
+            break;
 
 }
+}
+// coordinateur
+if(isset($_GET['id']))
+        {
+            session_start();
+            require_once '../controllers/ControllerNote.php';   
+            $MOD= new ControllerNote();
+            $_SESSION['idmod']=$_GET['id'];
+            echo $_GET['id'];
+
+            $_SESSION['modules_profs']=$MOD->getmodbyidprof($_GET['id']);
+            foreach ($_SESSION['modules_profs'] as $module) {
+                echo "<a href=\"../../routing/routing.php?id=" . $module['IdProf'] . "\" class=\"btn btn-primary\">Voir</a>";
+            }
+            echo "<br>";
+            // var_dump($_SESSION['modules_profs']);echo "<br>";
+        
+            header("location:../views/coordinateur/TableModule.php");
+            exit();
+    
+        }
+        // prof
+if(isset($_GET['listetu']))
+        {
+           
+           
+        
+            header("location:../views/prof/TableEtu.php");
+            exit();
+    
+        }

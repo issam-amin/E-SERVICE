@@ -1,7 +1,6 @@
 <?php
 // session_start();
 require_once '../models/Users.php';
-
 class loginController
 {
 
@@ -20,8 +19,10 @@ class loginController
                 $_SESSION['Nom'] = $tab['Nom'];
                 $_SESSION['Idrole'] = $tab['Idrole'];
                 $_SESSION['Prenom'] = $tab['Prenom'];
-                // $_SESSION['Idfiliere'] = $tab['Idfiliere'];
                 $_SESSION['autoriser']=true;
+
+                // $_SESSION['Idfiliere'] = $tab['Idfiliere'];
+                
                 if ($tab['Idrole'] == 1) {
                     header('location: ../views/etudiant/interface_etu.php');
                     exit();

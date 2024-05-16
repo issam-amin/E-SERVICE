@@ -15,10 +15,18 @@ class GetEtudiant
         return $resultat;
         
     }
-    public function GetEtudiantByfiliere($idfiliere)
+    public function getEtubyNiv($idniv)
     {
-        $resultat= $this->etud->GetEtudiantByfiliere($idfiliere);
+        
+        $resultat=$this->etud->getEtubyNiv($idniv);
         return $resultat;
+        
     }
+
+}
+if(isset($_GET['niveau'])){
+$test=new Etudiant;
+$lol=$test->getEtubyNiv($_GET['niveau']);
+ var_dump($lol);
 }
 

@@ -32,8 +32,7 @@ include '../../securite.php';
         .btn {
  width: 6.5em;
  height: 2.3em;
- margin: 0.5em;
- background: gray;
+ margin: 0.5em; 
  color: white;
  border: none;
  border-radius: 0.625em;
@@ -76,12 +75,10 @@ button:hover:after {
     <?php require_once '../navigations/navigation_coor.php';?>
     </header>
     <main class="main">
-        <h1>Liste des Notes</h1>
+        <h1>Liste des Professeurs :</h1>
        <!-- chois du prof  -->
-    <label >Choix du prof:</label>
-    <form action="../../routing/routing.php" method="POST">
-
-            <?php
+    <!-- <form action="../../routing/routing.php?act" method="POST"> -->
+            <!-- <?php
         
         
                     if(isset($_SESSION['notes'])){
@@ -97,9 +94,51 @@ button:hover:after {
                     else{
                         echo "no data";
                     }
+            ?> -->
+    <table class="table table-Warning table-striped table-hover text-center">
+                <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <!-- <th scope="col">Modules</th> -->
+                <th scope="col">Action</th> <!-- Added new column for the button -->
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+        
+                if(isset($_SESSION['profs'])){
+                    $counter = 1;
+                    //var_dump($_SESSION['profs']);
+                    foreach ($_SESSION['profs'] as $note) {
+                        $professor_id=$note['IdProf'];
+                        //  var_dump( $_SESSION['modules_profs']);
+
+                        if (isset($note['Nom']) && isset($note['PRENOM']) && isset($note['IdProf']) ) {
+                                echo "<tr>";
+                                echo "<th scope=\"row\">" . $counter . "</th>";
+                                echo "<td>" . $note['Nom'] . "</td>";
+                                echo "<td>" . $note['PRENOM'] . "</td>";
+                                echo "<td>";
+                                echo "<a href=\"../../routing/routing.php?id=" . $note['IdProf'] . "\" class=\"btn btn-primary\">Modules</a>";
+                                echo "</td>";
+                                echo "</tr>";
+                                $counter++;
+                        }
+                    }
+                    
+                } else {
+                    echo "<tr><td colspan='5'>No data available</td></tr>";
+                }
             ?>
-    <button type="submit" class="btn" >Valider</button>        
-    </form>
+        </tbody>
+    </table>
+        
+        <!-- <button type="button" class="btn btn-danger" value="reclamer" >Reclamer</button>
+        <button type="button" class="btn btn-success" value="valider">Valider</button> -->
+   
+    <!-- </form> -->
             
 
     </main>

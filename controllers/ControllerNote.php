@@ -10,4 +10,8 @@ class ControllerNote{
         $result = $this->note->cooruserfilier($iduser);
         return $result;
     }
+    public function getmodbyidprof($idprof){
+        $result = $this->note->getmodbyidprof($idprof);
+        return $result;
+    }
 }
