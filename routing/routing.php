@@ -80,6 +80,8 @@ switch ($_GET['action'])
             require_once '../controllers/ControllerNote.php';
             $test1 = new ControllerNote();
             $_SESSION['modules_Specifique_Prof']=$test1->getmodbyidprof($test['IdProf']);
+                    // prof
+           
             // var_dump($_SESSION['modules_Specifique_Prof']);
             header("location:../views/prof/noteEtu.php");
             exit();
@@ -107,13 +109,22 @@ if(isset($_GET['id']))
             exit();
     
         }
-        // prof
-if(isset($_GET['listetu']))
+        if(isset($_GET['module']) &&isset($_GET['prof'])) 
         {
-           
-           
-        
-            header("location:../views/prof/TableEtu.php");
+            session_start();
+            require_once '../controllers/ControllerModules.php';
+            $test10=new Modules();
+            $idmod = intval($_GET['module']);
+            $idProf = intval($_GET['prof']);
+
+            $idniveau=$test10->getidniveau($idProf,$idmod);
+          
+            
+            require_once '../controllers/GetEtudiant.php';
+            $test11=new Etudiant;
+            var_dump($test11->getEtubyNiv($idniveau));
+            $_SESSION['listesEtudiant']=$test11->getEtubyNiv($idniveau);
+            header("location:../views/prof/ListeEtu.php");
             exit();
-    
+            
         }

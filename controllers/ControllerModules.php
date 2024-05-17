@@ -33,9 +33,3 @@ class ControllerModules
     }
 }
 
-$test=new Modules();
-
-$niveau=$test->getidniveau(6,6);
-var_dump($niveau);
-if(isset($niveau))
-header("location:./GetEtudiant.php?niveau=$niveau");

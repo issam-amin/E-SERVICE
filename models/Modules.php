@@ -50,8 +50,8 @@ class Modules{
         
         // Fetch the result as an associative array
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
        return $result['IdNiveau'];
-      //  return $result;
     }
     
 

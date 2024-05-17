@@ -10,17 +10,60 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
     <style>
+        .container{
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .header{
+            flex: 1;
+        }
         .main{
             margin-top: 7rem;
             margin-left: 7rem;
-            margin-right: 7rem;
+            margin-right: 3rem;
         }
-        .input1{
-            margin-left: 7rem;
+      
+       ol, ul{
+           padding-left: 0;
         }
-        ol,ul{
-            padding: 0;
-        }
+        .btn {
+ width: 6.5em;
+ height: 2.3em;
+ margin: 0.5em; 
+ color: white;
+ border: none;
+ border-radius: 0.625em;
+ font-size: 20px;
+ font-weight: bold;
+ cursor: pointer;
+ position: relative;
+ z-index: 1;
+ overflow: hidden;
+}
+
+button:hover {
+ color: black;
+}
+
+button:after {
+ content: "";
+ background: white;
+ position: absolute;
+ z-index: -1;
+ left: -20%;
+ right: -20%;
+ top: 0;
+ bottom: 0;
+ transform: skewX(-45deg) scale(0, 1);
+ transition: all 0.5s;
+}
+
+button:hover:after {
+ transform: skewX(-45deg) scale(1, 1);
+ -webkit-transition: all 0.5s;
+ transition: all 0.5s;
+}
     </style>
 </head>
 <body>
@@ -49,15 +92,15 @@ session_start();
                            
                             foreach ($_SESSION['modules_Specifique_Prof'] as $module) {
                                 $_SESSION['IdModule']=$module['IdModule'];
-                                var_dump($_SESSION['IdModule']);
+                                $_SESSION['IdProf']=$module['IdProf'];
                                 echo "<tr>";
                                 echo "<th scope=\"row\">" . $counter . "</th>";
                                 echo "<td>" . $module['Intitule'] . "</td>";
                                 echo "<td>";
-                                echo "<a href=\"../../routing/routing.php?listetu=" . $module['IdModule'] . "\" class=\"btn btn-secondary\">Notes</a>";
+                                echo "<a href=\"../../routing/routing.php?module=" . $module['IdModule'] ."&prof=" . $module['IdProf'] . "\" class=\"btn btn-secondary\">Notes</a>";
                             
                                 echo "</td>";
-                                echo "</tr>";
+                                echo "</tr>"; 
                                 $counter++;
                         }
                        
@@ -72,6 +115,7 @@ session_start();
                     echo "<tr><td colspan='5'>No data available</td></tr>";
                 }
             ?>
+            
         </tbody>
     </table>
    

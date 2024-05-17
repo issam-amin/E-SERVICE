@@ -24,9 +24,9 @@ class GetEtudiant
     }
 
 }
-if(isset($_GET['niveau'])){
-$test=new Etudiant;
-$lol=$test->getEtubyNiv($_GET['niveau']);
- var_dump($lol);
-}
+// if(isset($_GET['niveau'])){
+// $test=new Etudiant;
+// $lol=$test->getEtubyNiv($_GET['niveau']);
+//  var_dump($lol);
+// }
 
