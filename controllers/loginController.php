@@ -58,6 +58,12 @@ class Getelement
         $tab = $this->usermodel->getElementById($element);
         return $tab;
     }
+    public function GetNivbyIdUs($iduser)
+    {
+        $tab = $this->usermodel->GetNivbyIdUs($iduser);
+        return $tab;
+    }
+
  
 }
 

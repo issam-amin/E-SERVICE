@@ -98,29 +98,8 @@ h1
     <?php require_once '../navigations/navigation_coor.php';?>
     </header>
     <main class="main">
-        <h1>Selectionner Niveau :</h1>
-        <form action="../../routing/routing.php" method="POST">
-            
-                <?php
-                        if(isset($_SESSION['niveaux'])){
-                            echo "<select class=\"form-select\" id=\"niveauSelect\" onchange=\"showId()\">";
-                            foreach($_SESSION['niveaux'] as $niveau) {
-                                echo "<option value='" . $niveau['IdNiveau'] . "'>" . $niveau['nivNom'] . "</option>";
-                            }
-                            echo "</select>";
-                            echo "<br><br>";
-                            echo "<div id='selectedId'></div>";
-                        }
-                        else{
-                            echo "no data";
-                        }
-                ?>
-      <!-- <button type="submit" class="btn btn-success" name="selcetniv">Select</button> -->
-            <button class="btn" name="selcetniv">
-                <span class="btn-text-one">Select</span>
-                <span class="btn-text-two">Great!</span>
-            </button>
-    </form>       
+        <h1>Liste Etudiant</h1>
+
     </main>
 
     <!-- <script>

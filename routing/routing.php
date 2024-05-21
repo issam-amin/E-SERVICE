@@ -48,13 +48,12 @@ switch ($_GET['action'])
 
     case 'noteCoor':
         session_start();
-        require_once '../controllers/ControllerNiveau.php';
-        // recuperation de ID 
-        $note = new ControllerNiveau();
-        $id = $_SESSION['IdUser'];
-        $_SESSION['niveaux']= $note->GetByIdCoor($id);
-        var_dump($_SESSION['niveaux']);
-        // header("location:../views/coordinateur/listeniveaux.php");
+        require_once '../controllers/loginController.php';
+        $obj=new Getelement();
+        $id=$_SESSION['IdUser'];
+        $_SESSION['niveaux']=$obj->GetNivbyIdUs($id);
+        var_dump($obj->GetNivbyIdUs($id));
+        header("location:../views/coordinateur/listeniveaux.php");
         exit();
         break;
         
@@ -91,7 +90,7 @@ switch ($_GET['action'])
 }
 }
 // coordinateur
-if(isset($_GET['id']))
+    if(isset($_GET['id']))
         {
             session_start();
             require_once '../controllers/ControllerNote.php';   
@@ -109,6 +108,12 @@ if(isset($_GET['id']))
             header("location:../views/coordinateur/TableModule.php");
             exit();
     
+        }
+    if (isset($_POST['selcetniv'])){
+        
+            header("location:../views/coordinateur/ConsulterListeEtu.php");
+            exit();
+        
         }
 // prof les notes
             // listes des etudiants
@@ -176,9 +181,6 @@ if(isset($_GET['id']))
             header("location:../views/prof/ListeEtu.php");
             exit();
         }
-
-
-
         if (isset($_POST['Updatenote'])){
             session_start();     
             if (isset($_SESSION['listesEtudiant'])) {
@@ -192,12 +194,7 @@ if(isset($_GET['id']))
                 foreach ($etudiants as $id => $etudiant) {
                     $idetud = htmlspecialchars($etudiant['id']);
                     $note = htmlspecialchars($etudiant['note']);
-                    
-        
                     $res = $obj->updatenote($note, $idetud);
-                   
-                    
-                    
                     if (!$res) {
                         $success = false;
                     }

@@ -29,6 +29,26 @@ class Users
         $tab = $res->fetch(PDO::FETCH_ASSOC);
         return $tab;
     }
+    // trouver les niveau a travers id users
+    public function GetNivbyIdUs($iduser)
+    {
+        global $db;
+        $res = $db->prepare("SELECT nivNom FROM users
+        JOIN coordinateur ON users.IdUser = coordinateur.Iduser
+        JOIN niveau ON coordinateur.Idfiliere = niveau.IdFiliere
+        WHERE users.IdUser = :iduser");
+        
+        $params = array(':iduser' => $iduser);
+        $res->execute($params);
+        $tab = $res->fetchAll(PDO::FETCH_ASSOC);
+        
+        if ($tab === false) {
+            return null;
+        }
+        
+        return $tab;
+        
+    }
 
   
 }
