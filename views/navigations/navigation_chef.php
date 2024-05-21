@@ -58,7 +58,7 @@ session_start();
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../etudiant/interface_prof.php">
+                        <a href="../chef_dep/interface_chef_dep.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -66,9 +66,10 @@ session_start();
 
                    
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bxs-graduation icon'></i>
-                            <span class="text nav-text">Publier Notes</span>
+                        <a href="../../routing/routing.php?action=Gestiondemodule">
+                            <i class='bx bxs-select-multiple icon'></i>
+                            <!-- <i class='bx bxs-hand-right icon'></i> -->
+                            <span class="text nav-text">Gestion de module</span>
                         </a>
                     </li>
                     <li class="nav-link">

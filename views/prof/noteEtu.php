@@ -87,9 +87,6 @@ button:hover:after {
                 if(isset($_SESSION['modules_Specifique_Prof'])){
                     $counter = 1;                  
                             // var_dump( $_SESSION['modules_Specifique_Prof']);
-                        
-
-                           
                             foreach ($_SESSION['modules_Specifique_Prof'] as $module) {
                                 $_SESSION['IdModule']=$module['IdModule'];
                                 $_SESSION['IdProf']=$module['IdProf'];

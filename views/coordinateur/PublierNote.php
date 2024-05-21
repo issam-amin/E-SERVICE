@@ -108,20 +108,20 @@ button:hover:after {
         <tbody>
             <?php
         
-                if(isset($_SESSION['profs'])){
+                if(isset($_SESSION['etudiant_niv'])){
                     $counter = 1;
                     //var_dump($_SESSION['profs']);
-                    foreach ($_SESSION['profs'] as $note) {
-                        $professor_id=$note['IdProf'];
+                    foreach ($_SESSION['etudiant_niv'] as $note) {
+                        $student_id=$note['etudiant_id'];
                         //  var_dump( $_SESSION['modules_profs']);
 
-                        if (isset($note['Nom']) && isset($note['PRENOM']) && isset($note['IdProf']) ) {
+                        if (isset($note['Nom']) && isset($note['Prenom']) && isset($note['etudiant_id']) ) {
                                 echo "<tr>";
                                 echo "<th scope=\"row\">" . $counter . "</th>";
                                 echo "<td>" . $note['Nom'] . "</td>";
-                                echo "<td>" . $note['PRENOM'] . "</td>";
+                                echo "<td>" . $note['Prenom'] . "</td>";
                                 echo "<td>";
-                                echo "<a href=\"../../routing/routing.php?id=" . $note['IdProf'] . "\" class=\"btn btn-primary\">Modules</a>";
+                                // echo "<a href=\"../../routing/routing.php?id=" . $note['IdProf'] . "\" class=\"btn btn-primary\">Modules</a>";
                                 echo "</td>";
                                 echo "</tr>";
                                 $counter++;

@@ -31,5 +31,14 @@ class ControllerModules
        
         return $result;
     }
+    public function displaymod($iddep){
+        $result=$this->modules-> displaymod($iddep);
+       
+        return $result;
+    }
 }
 
+// $chefDep = new ControllerModules();
+// $idUtilisateur = 1;
+// $resultat = $chefDep->displaymod($idUtilisateur);
+// var_dump($resultat);

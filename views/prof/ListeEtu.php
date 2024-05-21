@@ -32,7 +32,7 @@ session_start();
         height: 2.3em;
         margin: 0.5em; 
         color: white;
-        background: green;
+        
         border: none;
         border-radius: 0.625em;
         font-size: 20px;
@@ -65,7 +65,8 @@ session_start();
         -webkit-transition: all 0.5s;
         transition: all 0.5s;
         }
-        .input {
+        .inputnote {
+            max-width: 7rem;
                 border: none;
                 outline: none;
                 border-radius: 15px;
@@ -73,24 +74,45 @@ session_start();
                 background-color: #ccc;
                 box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
                 transition: 300ms ease-in-out;
+                text-align: center;
                 }
 
-                .input:focus {
+                .inputnote:focus {
                 background-color: white;
                 transform: scale(1.05);
                 box-shadow: 13px 13px 100px #969696,
                             -13px -13px 100px #ffffff;
                 }
+                h1{
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-weight: 400;
+                    margin-bottom: 2.5rem;
+                }
     </style>
 </head>
 <body>
 <header class="header">
-    <?php require_once '../navigations/navigation_prof.php';?>
+    <?php require_once '../navigations/navigation_prof.php'; ?>
 </header>
 <main class="main">
-<h1>Tables des ETUDIANTS</h1>
+
+<?php
+
+    if (isset($_SESSION['message'])) {
+        $message_type = isset($_SESSION['message_type']) ? $_SESSION['message_type'] : 'success';
+        $alert_class = ($message_type == 'success') ? 'alert-success' : 'alert-danger';
+        echo "<div class='alert $alert_class' role='alert' aria-label=close'>{$_SESSION['message']}</div>";
+        unset($_SESSION['message']);
+        unset($_SESSION['message_type']);
+    }
+
+?>
+
+
+<h1>Tables des ETUDIANTS :</h1>
+<form action="../../routing/routing.php" method="post"> <!-- Start the form here -->
    <table class="table table-Warning table-striped table-hover text-center">
-                <thead>
+        <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Noms</th>
@@ -100,40 +122,94 @@ session_start();
         </thead>
         <tbody>
             <?php
-            
-        // var_dump($_SESSION);
                 if(isset($_SESSION['listesEtudiant'])){
+                    
+
+                    
+
                     $counter = 1;
-                    echo "<form action=\"your_form_handler.php\" method=\"post\">"; // Start the form
+                    
                     foreach ($_SESSION['listesEtudiant'] as $Etudiants) {
-                        echo "<tr>";
-                        echo "<th scope=\"row\">" . $counter . "</th>";
-                        echo "<td>" . htmlspecialchars($Etudiants['Nom']) . "</td>";
-                        echo "<td>" . htmlspecialchars($Etudiants['Prenom'])."</td>";
-                        echo "<td>";
-                        echo "<input type=\"text\" autocomplete=\"off\" name=\"note" . $counter . "\" class=\"input\" placeholder=\"NOTE\" />";
-                        // echo "<input type=\"text\" name=\"idEtu" . $Etudiants['IdEtudiant'] . "\" class=\"form-control\" />";
-                        echo "</td>";
-                        echo "</tr>"; 
-                        $counter++;
+
+                       
+                        if (isset($Etudiants['valeurs'])) {
+                            
+
+                            $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
+                           
+                            echo "<tr>";
+                            echo "<th scope=\"row\">" . $counter . "</th>";
+                            echo "<td>" . htmlspecialchars($Etudiants['Nom']) . "</td>";
+                            echo "<td>" . htmlspecialchars($Etudiants['Prenom']) . "</td>";
+                            echo "<td>";
+                            echo "<input type=\"hidden\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]\" value=\"" . htmlspecialchars($Etudiants['IdEtudiant']) . "\">";
+                            echo "<input min=\"0\" max=\"20\" type=\"number\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][note]\" id=\"typeNumber\" class=\"inputnote\" value=\"" . htmlspecialchars($Etudiants['valeurs']) . "\">";
+                            echo "</td>";
+                            echo "</tr>";
+                           
+                            $counter++;
+                        }
+                        else{
+                            // var_dump($_SESSION['etudiantsids']);
+                            // $_SESSION['lesvaleurs'] = $Etudiants['valeurs'] ? $Etudiants['valeurs'] : NULL;
+                            $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
+                            echo "<tr>";
+                            echo "<th scope=\"row\">" . $counter . "</th>";
+                            echo "<td>" . htmlspecialchars($Etudiants['Nom']) . "</td>";
+                            echo "<td>" . htmlspecialchars($Etudiants['Prenom']) . "</td>";
+                            echo "<td>";
+                            echo "<input type=\"hidden\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]\" value=\"" . htmlspecialchars($Etudiants['IdEtudiant']) . "\">";
+                            echo "<input min=\"0\" max=\"20\" type=\"number\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][note]\" id=\"typeNumber\" class=\"inputnote\" placeholder=\"Note\">";
+                            echo "</td>";
+                            echo "</tr>"; 
+                            $counter++;
+                        }       
+                        echo "<input type=\"hidden\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]\" value=\"" . htmlspecialchars($Etudiants['IdEtudiant']) . "\">";
+                        
                     }
-                    echo "</form>"; // End the form
-                }
-          
-                 else {
+                
+                } else {
                     echo "<tr><td colspan='5'>No data available</td></tr>";
                 }
-
             ?>
         </tbody>
     </table>
-    <button type="submit" class="btn">Submit</button></td></tr>
+    <?php
+if (!isset($_SESSION['lesvaleurs'])) {
+    echo '<button type="submit" class="btn btn-success" name="submitnote">Enregistrer</button>';
+} else {
+    echo '<button type="submit" class="btn btn-primary" name="Updatenote">Update</button>';
+}
+?>
+
+</form>
+
+</main>
+
 
 </main>
 </body>
 </html>
 
-
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        var inputs = document.querySelectorAll('.inputnote');
+        var allEmpty = true;
+        
+        inputs.forEach(function(input) {
+            if (input.value.trim() !== '') {
+                allEmpty = false;
+            }
+        });
+        
+        var clickedButton = document.activeElement;
+        
+        if (clickedButton.name === 'submitnote' && allEmpty) {
+            event.preventDefault();
+            alert('VEUILLEZ INSERER AU MOIS UNE NOTE');
+        }
+    });
+</script>
 
   
 

@@ -22,6 +22,13 @@ class GetEtudiant
         return $resultat;
         
     }
+    public function getEtudiantbyNiv($idniv)
+    {
+        
+        $resultat=$this->etud->getEtudiantbyNiv($idniv);
+        return $resultat;
+        
+    }
 
 }
 // if(isset($_GET['niveau'])){

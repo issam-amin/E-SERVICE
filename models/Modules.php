@@ -53,6 +53,29 @@ class Modules{
         
        return $result['IdNiveau'];
     }
+    public function displaymod($iddep) {
+        global $db;
+    
+        $sql = "SELECT module.IdModule, module.Intitule, niveau.nivNom, departement.Nom, specialite.nom_specialite
+                FROM module 
+                INNER JOIN niveau ON module.IdNiveau = niveau.IdNiveau
+                INNER JOIN departement ON module.IdDep = departement.IdDep
+                INNER JOIN specialite ON module.idSpecialite = specialite.id_specialite
+                WHERE departement.IdDep = :IDdep";
+    
+        try {
+            $res = $db->prepare($sql);
+            $res->bindParam(':IDdep', $iddep, PDO::PARAM_INT);  // Ensure parameter is bound
+            $res->execute();
+            $result = $res->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return [];
+        }
+    }
+    
+    
     
 
 }

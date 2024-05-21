@@ -12,9 +12,9 @@ class ControllerNiveau
         $results=$this->niveau->GetAll();
         return $results;  
     }
-    public function GetByIdCoor()
+    public function GetByIdCoor($iduser)
     {
-        $result=$this->niveau->GetByIdCoor();
+        $result=$this->niveau->GetByIdCoor($iduser);
         return $result;
     }
 }

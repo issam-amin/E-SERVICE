@@ -12,9 +12,8 @@ class Niveau
         $result = $res->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function GetByIdCoor(){
+    public function GetByIdCoor($idUser){
            global $db;
-           global $idUser;
         // Get IdUser from session
          $idUser =  $_SESSION["IdUser"];
 
@@ -22,7 +21,7 @@ class Niveau
         $sql = "SELECT *
                 FROM niveau
                 JOIN coordinateur ON coordinateur.Idfiliere = niveau.IdFiliere
-                JOIN users ON users.IdUser = coordinateur.Iduser
+                JOIN users ON users.IdUser = coordinateur.'$idUser'
                 WHERE users.IdUser = '$idUser' ";
 
         $res = $db->prepare($sql);
