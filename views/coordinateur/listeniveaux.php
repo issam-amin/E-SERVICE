@@ -29,7 +29,7 @@ include '../../securite.php';
        ol, ul{
            padding-left: 0;
         }
-        .btn {
+        /* .btn {
   width: 140px;
   height: 50px;
   background: linear-gradient(to top, #00154c, #12376e, #23487f);
@@ -73,7 +73,7 @@ include '../../securite.php';
 .btn:hover .btn-text-two {
   top: 50%;
 }
-
+*/
 h1
 {
     font-family: 'Times New Roman', Times, serif;
@@ -84,12 +84,14 @@ h1
     margin-bottom: 5rem;
 }
 .form-select{
+    flex:1 ;
     border-radius: 15px;
     padding: 1em;
-    width: 75%;
+    width: 50%;
     text-align: center;
-}
-    </style>
+} 
+  
+  </style>
 
 </head>
 <body>
@@ -98,31 +100,36 @@ h1
     <?php require_once '../navigations/navigation_coor.php';?>
     </header>
     <main class="main">
-        <h1>Selectionner Niveau :</h1>
-        <form action="../../routing/routing.php" method="POST">
-            
-                <?php
-                        if(isset($_SESSION['niveaux'])){
-                            echo "<select class=\"form-select\" id=\"niveauSelect\" onchange=\"showId()\">";
-                            foreach($_SESSION['niveaux'] as $niveau) {
-                                echo "<option value='" . $niveau['IdNiveau'] . "'>" . $niveau['nivNom'] . "</option>";
-                            }
-                            echo "</select>";
-                            echo "<br><br>";
-                            echo "<div id='selectedId'></div>";
-                        }
-                        else{
-                            echo "no data";
-                        }
-                ?>
-      <!-- <button type="submit" class="btn btn-success" name="selcetniv">Select</button> -->
-            <button class="btn" name="selcetniv">
-                <span class="btn-text-one">Select</span>
-                <span class="btn-text-two">Great!</span>
-            </button>
-    </form>       
-    </main>
+    
 
+        <h1>Selectionner Niveau :</h1>
+
+    <form class="mt-3 p-3 border rounded shadow-sm" action="../../routing/routing.php" method="POST">
+    <div class="mb-3">
+        <label for="niveauSelect" class="form-label">Sélectionnez un niveau :</label>
+        <?php
+            if (isset($_SESSION['niveaux'])) {
+                echo "<select class=\"form-select\" name=\"niveauSelect\" id=\"niveauSelect\" aria-label=\"Sélectionnez un niveau\">";
+                foreach ($_SESSION['niveaux'] as $niveau) {
+                    echo "<option value='" . $niveau['IdNiveau'] . "'>" . $niveau['nivNom'] . "</option>";
+                }
+                echo "</select>";
+            } else {
+                echo "Pas de données disponibles";
+            }
+        ?>
+    </div>
+    <button type="submit" class="btn btn-primary" >Sélectionner</button>       
+   </form>
+    
+    </main>
+    <!-- <script>
+function redirectToNiv() {
+    var select = document.getElementById('niveauSelect');
+    var selectedValue = select.value;
+    window.location.href = "../../routing/routing.php?selectniv=" + selectedValue;
+}
+</script> -->
     <!-- <script>
 function showId() {
      var select = document.getElementById('niveauSelect');

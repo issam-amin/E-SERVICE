@@ -30,4 +30,8 @@ class ControllerNote{
         $result = $this->note->updatenote($value,$idetu);
         return $result;
     }
+    public function  GetNoteEtus($idetu){
+        $result = $this->note->GetNoteEtus($idetu);
+        return $result;
+    }
 }

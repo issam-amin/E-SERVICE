@@ -32,3 +32,5 @@ class Niveau
    
    
 }
+$test=new Etudiant;
+$test->getEtubyNiv(2);

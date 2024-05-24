@@ -37,11 +37,9 @@ class Etudiant
         $stmt->bindParam(':Idniveau', $idniv, PDO::PARAM_INT);
         $stmt->execute();        
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // var_dump($result);
+        var_dump($result);
         return $result;
 
     }
  
 }
-// $test=new Etudiant;
-// $test->getEtubyNiv(6);

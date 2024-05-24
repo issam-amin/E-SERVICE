@@ -93,9 +93,23 @@ class Note{
             die("Query failed: " . $e->getMessage());
         }
     }
-    
+
+
+    public function GetNoteEtus($idetu){
+        global $db;
+        $sql="select valeurs,Intitule from tempnote
+        join etudiant on etudiant.IdEtudiant=tempnote.idetu
+        join module on module.IdModule=tempnote.idmodule
+        where etudiant.IdEtudiant=:idEtu";
+        
+        $res = $db->prepare($sql);
+        $res->bindParam(':idEtu', $idetu, PDO::PARAM_INT);
+        $res->execute();
+        $result = $res->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
 }
+
 // $test=new Note;
-// $id = $_SESSION['IdUser'];
-// $test->cooruserfilier($id);
+// var_dump($test->GetNoteEtus(2));

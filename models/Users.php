@@ -33,7 +33,7 @@ class Users
     public function GetNivbyIdUs($iduser)
     {
         global $db;
-        $res = $db->prepare("SELECT nivNom FROM users
+        $res = $db->prepare("SELECT * FROM users
         JOIN coordinateur ON users.IdUser = coordinateur.Iduser
         JOIN niveau ON coordinateur.Idfiliere = niveau.IdFiliere
         WHERE users.IdUser = :iduser");

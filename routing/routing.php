@@ -30,10 +30,6 @@ switch ($_GET['action'])
         header("location:../views/coordinateur/ConsulterListeMod.php");
         exit();
         break;
-
-
-
-
     // case 'etudiant':
     //     require_once '../controllers/ControllerNiveau.php';
     //     $niveau = new ControllerNiveau();
@@ -61,30 +57,34 @@ switch ($_GET['action'])
         case 'profNote':
             session_start();
             // recuperation de id  prof
-            require_once'../controllers/ControllerProf.php';
+            require_once '../controllers/ControllerProf.php';
             $prof=new ControllerProf(); 
             $test=$prof->getprofbyuser($_SESSION['IdUser']);
+            var_dump($test['IdProf']);
+            echo "<br>";
             // recuperation des modules du profs
             require_once '../controllers/ControllerNote.php';
             $test1 = new ControllerNote();
             $_SESSION['modules_Specifique_Prof']=$test1->getmodbyidprof($test['IdProf']);           
-            // var_dump($_SESSION['modules_Specifique_Prof']);
+            var_dump($_SESSION['modules_Specifique_Prof']);
+            echo "<br>";
             header("location:../views/prof/noteEtu.php");
             exit();
             break;
+        //chef departement
             
         case 'Gestiondemodule':
             session_start();
-            require_once '../controllers/ControllerChefDep.php';
-            $chefDep = new ControllerChefDep();
-            $idUtilisateur= $chefDep->getidDep($_SESSION['IdUser']);
-            require_once '../controllers/ControllerModules.php';
-            $disp = new ControllerModules();
+            // require_once '../controllers/ControllerChefDep.php';
+            // $chefDep = new ControllerChefDep();
+            // $idUtilisateur= $chefDep->getidDep($_SESSION['IdUser']);
+            // require_once '../controllers/ControllerModules.php';
+            // $disp = new ControllerModules();
             
-            $_SESSION['dispModules'] = $disp->displaymod($idUtilisateur);
-            header("location:../views/chef_dep/gestionModule.php");
-            exit();
-            break;
+            // $_SESSION['dispModules'] = $disp->displaymod($idUtilisateur);
+            // header("location:../views/chef_dep/gestionModule.php");
+            // exit();
+            // break;
 
 
 }
@@ -109,11 +109,31 @@ switch ($_GET['action'])
             exit();
     
         }
-    if (isset($_POST['selcetniv'])){
-        
+        if (isset($_POST['niveauSelect'])){
+            session_start();
+            $_SESSION['selected_niveau'] = $_POST['niveauSelect'];
+             echo $_SESSION['selected_niveau'];
+             $niv= $_SESSION['selected_niveau'];
+            require_once '../controllers/GetEtudiant.php';
+            $obj=new GetEtudiant();
+            $test=$obj->getEtud($niv);
+            $_SESSION['list_etu_co']=$test;
+            // var_dump($test);
             header("location:../views/coordinateur/ConsulterListeEtu.php");
             exit();
         
+        }
+        if (isset($_GET['detail'])){
+            session_start();
+            $idetu=$_GET['detail'];
+            require_once '../controllers/ControllerNote.php';
+            $obj=new ControllerNote();
+            $_SESSION['mod1Etu']=$obj->GetNoteEtus($idetu);
+            var_dump($_SESSION['mod1Etu']);
+            header("location:../views/coordinateur/module1Etu.php");
+            exit();
+        // var_dump($_GET['detail']);
+
         }
 // prof les notes
             // listes des etudiants
@@ -134,7 +154,7 @@ switch ($_GET['action'])
             if(empty($_SESSION['listesEtudiant'])){
                 $_SESSION['listesEtudiant']=$test1->getEtud($idniveau);
             }
-            var_dump($_SESSION['listesEtudiant']);
+            // var_dump($_SESSION['listesEtudiant']);
             header("location:../views/prof/ListeEtu.php");
             exit();
             

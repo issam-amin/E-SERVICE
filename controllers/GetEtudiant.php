@@ -15,6 +15,7 @@ class GetEtudiant
         return $resultat;
         
     }
+    // prof
     public function getEtubyNiv($idniv)
     {
         
@@ -22,18 +23,19 @@ class GetEtudiant
         return $resultat;
         
     }
-    public function getEtudiantbyNiv($idniv)
+    //coord
+    public function getEtud($idniv)
     {
         
-        $resultat=$this->etud->getEtudiantbyNiv($idniv);
+        $resultat=$this->etud->getEtud($idniv);
         return $resultat;
         
     }
+   
 
 }
-// if(isset($_GET['niveau'])){
-// $test=new Etudiant;
-// $lol=$test->getEtubyNiv($_GET['niveau']);
-//  var_dump($lol);
-// }
+
+$test=new GetEtudiant;
+$lol=$test->getEtubyNiv(6);
+ var_dump($lol);
 

@@ -122,19 +122,25 @@ session_start();
         </thead>
         <tbody>
             <?php
-                if(isset($_SESSION['listesEtudiant'])){
-                    
-
-                    
+                if(isset($_SESSION['listesEtudiant'])){              
 
                     $counter = 1;
+                    $hasValues = false;
+
+                    foreach ($_SESSION['listesEtudiant'] as $Etudiants) {
+                        if (isset($Etudiants['valeurs'])) {
+                            $hasValues = true;
+                            break;
+                        }
+                    }
                     
                     foreach ($_SESSION['listesEtudiant'] as $Etudiants) {
 
+                            ;
                        
                         if (isset($Etudiants['valeurs'])) {
-                            
-
+                            // var_dump($Etudiants['valeurs']);
+                            // $_SESSION['checkvalues'] = $Etudiants['valeurs'];
                             $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
                            
                             echo "<tr>";
@@ -145,13 +151,11 @@ session_start();
                             echo "<input type=\"hidden\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]\" value=\"" . htmlspecialchars($Etudiants['IdEtudiant']) . "\">";
                             echo "<input min=\"0\" max=\"20\" type=\"number\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][note]\" id=\"typeNumber\" class=\"inputnote\" value=\"" . htmlspecialchars($Etudiants['valeurs']) . "\">";
                             echo "</td>";
-                            echo "</tr>";
+                            echo "</tr>";  
                            
                             $counter++;
                         }
                         else{
-                            // var_dump($_SESSION['etudiantsids']);
-                            // $_SESSION['lesvaleurs'] = $Etudiants['valeurs'] ? $Etudiants['valeurs'] : NULL;
                             $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
                             echo "<tr>";
                             echo "<th scope=\"row\">" . $counter . "</th>";
@@ -163,9 +167,15 @@ session_start();
                             echo "</td>";
                             echo "</tr>"; 
                             $counter++;
-                        }       
+                        }     
+                      
                         echo "<input type=\"hidden\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]\" value=\"" . htmlspecialchars($Etudiants['IdEtudiant']) . "\">";
                         
+                    }
+                    if ($hasValues) {
+                        echo '<button type="submit" class="btn btn-success" name="Updatenote">Update</button>';
+                    } else {
+                        echo '<button type="submit" class="btn btn-primary" name="submitnote">Enregistrer</button>';
                     }
                 
                 } else {
@@ -174,14 +184,13 @@ session_start();
             ?>
         </tbody>
     </table>
-    <?php
-if (!isset($_SESSION['lesvaleurs'])) {
-    echo '<button type="submit" class="btn btn-success" name="submitnote">Enregistrer</button>';
-} else {
-    echo '<button type="submit" class="btn btn-primary" name="Updatenote">Update</button>';
-}
-?>
+    <!-- <?php
+   echo '<button type="submit" class="btn btn-success" name="Updatenote">Update</button>';
+   echo '<button type="submit" class="btn btn-primary" name="submitnote">Enregistrer</button>'; 
 
+
+
+?>-->
 </form>
 
 </main>

@@ -72,7 +72,7 @@
                     </li>
                     <li class="nav-link">
                         <a href="../prof/PubCour.php">
-                            <i class='bx bx-git-pull-request icon'></i>
+                            <i class='bx bx-git-pull-request icon'></i> 
                             <span class="text nav-text">Publier Cours</span>
                         </a>
                     </li>
