@@ -172,6 +172,8 @@ session_start();
                         echo "<input type=\"hidden\" name=\"etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]\" value=\"" . htmlspecialchars($Etudiants['IdEtudiant']) . "\">";
                         
                     }
+                    echo "</tbody>";
+                    echo "</table>";
                     if ($hasValues) {
                         echo '<button type="submit" class="btn btn-success" name="Updatenote">Update</button>';
                     } else {
@@ -182,8 +184,7 @@ session_start();
                     echo "<tr><td colspan='5'>No data available</td></tr>";
                 }
             ?>
-        </tbody>
-    </table>
+     
     <!-- <?php
    echo '<button type="submit" class="btn btn-success" name="Updatenote">Update</button>';
    echo '<button type="submit" class="btn btn-primary" name="submitnote">Enregistrer</button>'; 

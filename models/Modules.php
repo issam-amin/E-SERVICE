@@ -22,23 +22,25 @@ class Modules{
         $result = $res->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    // public function getModulesByNiveau($idNiveau) {
-    //     global $db;
-    //     $modules = [];    
-    //     // Prepare and execute SQL query to fetch modules based on the selected ID
-    //     $sql = "SELECT * FROM module WHERE IdNiveau = :IdNiveau";
-    //     $stmt = $db->prepare($sql);
-    //     $stmt->bindParam(':IdNiveau', $idNiveau, PDO::PARAM_INT);
-    //     $stmt->execute();
+    public function getModulesByNiveau($idNiveau) {
+        global $db;
+        $modules = [];    
+        // Prepare and execute SQL query to fetch modules based on the selected ID
+        $sql = "SELECT module.IdModule, module.Intitule ,prof.Nom,prof.Prenom, prof.IdProf,module.IdNiveau FROM module
+        join  prof on prof.IdProf=module.IdProf
+        where IdNiveau=:IdNiveau";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':IdNiveau', $idNiveau, PDO::PARAM_INT);
+        $stmt->execute();
         
-    //     // Fetch modules as associative array
-    //     $modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Fetch modules as associative array
+        $modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-    //     // Return modules as JSON
-    //     echo json_encode($modules);
+        // Return modules as JSON
+        echo json_encode($modules);
             
-    //         return $modules;
-    // }
+            return $modules;
+    }
     public function getidniveau($idprof, $idmod)
     {
         global $db;

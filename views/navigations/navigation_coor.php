@@ -72,7 +72,7 @@
                     <li class="nav-link">
                         <a href="../../routing/routing.php?action=module">
                             <i class='bx bx-git-pull-request icon'></i>
-                            <span class="text nav-text">Consulter liste <br> Modules</span>
+                            <span class="text nav-text">Consulter Notes <br> Modules</span>
                         </a>
                     </li>
                 

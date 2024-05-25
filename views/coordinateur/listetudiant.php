@@ -98,7 +98,52 @@ h1
     <?php require_once '../navigations/navigation_coor.php';?>
     </header>
     <main class="main">
-        <h1>Liste Etudiant</h1>
+    <h1>Tables des ETUDIANTS :</h1>
+<form action="../../routing/routing.php" method="post"> <!-- Start the form here -->
+   <table class="table table-Warning table-striped table-hover text-center">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Noms</th>
+                <th scope="col">Prenoms</th>
+                <th scope="col">Notes</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                if(isset($_SESSION['listesEtudiant'])){              
+
+                    $counter = 1;
+                                     
+                  foreach ($_SESSION['listesEtudiant'] as $Etudiants) {
+                          if (isset($Etudiants['valeurs'])){
+                            // var_dump($_SESSION['listesEtudiant']);
+                            // $_SESSION['checkvalues'] = $Etudiants['valeurs'];
+                            $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
+                           
+                            echo "<tr>";
+                            echo "<th scope=\"row\">" . $counter . "</th>";
+                            echo "<td>" . htmlspecialchars($Etudiants['Nom']) . "</td>";
+                            echo "<td>" . htmlspecialchars($Etudiants['Prenom']) . "</td>";
+                             echo "<td>" . htmlspecialchars($Etudiants['valeurs']) . "</td>";
+                            echo "</tr>";  
+                           
+                            $counter++;
+                      
+                        }else {    
+                
+                          echo "<tr><td colspan='5'>No data available</td></tr>";
+                          break;
+                      }         
+                     }    
+                                            
+                      }else {    
+                
+                    echo "<tr><td colspan='5'>No data available</td></tr>";
+                }         
+                echo "</tbody>";
+                echo "</table>";  
+                  ?>
 
     </main>
 

@@ -17,28 +17,12 @@ switch ($_GET['action'])
     // COORDINATEUR
     case 'module':
         session_start();
-        require_once '../controllers/ControllerNiveau.php';
-        $niveau = new ControllerNiveau();
-        // $_SESSION['niveaux']=$niveau->GetByIdCoor();
-        var_dump($_SESSION['niveaux']);    
-        require_once '../controllers/ControllerModules.php';
-        $module = new ControllerModules();
-        // $_SESSION['modules']=$module->GetAll();
-       
-        $_SESSION['modules']=$module->GetById('IdDep');
-        var_dump($_SESSION['modules']);
-        header("location:../views/coordinateur/ConsulterListeMod.php");
-        exit();
-        break;
-    // case 'etudiant':
-    //     require_once '../controllers/ControllerNiveau.php';
-    //     $niveau = new ControllerNiveau();
-    //     // $_SESSION['niveaux']=$niveau->GetAll();
-    //     $_SESSION['niveaux']=$niveau->GetByIdCoor();
-    //     // var_dump($_SESSION['niveaux']);    
-
-
-        header("location:../views/coordinateur/ConsulterListeEtu.php");
+        require_once '../controllers/loginController.php';
+        $obj=new Getelement();
+        $id=$_SESSION['IdUser'];
+        $_SESSION['niveaux']=$obj->GetNivbyIdUs($id);
+        // var_dump($_SESSION['niveaux'][0]['IdNiveau']);
+        header("location:../views/coordinateur/niveaux.php");
         exit();
         break;
 
@@ -133,7 +117,39 @@ switch ($_GET['action'])
             header("location:../views/coordinateur/module1Etu.php");
             exit();
         // var_dump($_GET['detail']);
-
+        }
+        if (isset($_POST['ModulduNiv'])){
+            session_start();
+            $_SESSION['sel_niveau'] = $_POST['ModulduNiv'];
+             echo $_SESSION['sel_niveau'];
+             $niv= $_SESSION['sel_niveau'];
+            require_once '../controllers/ControllerModules.php';
+            $obj=new ControllerModules();
+            $test=$obj->getModulesByNiveau($niv);
+            $_SESSION['list_modul_niv']=$test;
+            var_dump($test);
+            header("location:../views/coordinateur/listeModNiv.php");
+            exit();
+        
+        }
+        if(isset($_GET['module']) &&isset($_GET['prof'])&&isset($_GET['niveau'])){
+            session_start();
+            require_once '../controllers/ControllerModules.php';
+            $test=new Modules();
+            $idmod = intval($_GET['module']);
+            $idProf = intval($_GET['prof']);
+            $_SESSION['IdModule']=$_GET['module'];
+            $_SESSION['IdProf']=$_GET['prof'];
+            $idniveau=$test->getidniveau($idProf,$idmod);
+            require_once '../controllers/GetEtudiant.php';
+            $test1=new Etudiant;
+            $_SESSION['listesEtudiant']=$test1->getEtubyNiv($idniveau,$idProf,$idmod);
+            if(empty($_SESSION['listesEtudiant'])){
+                $_SESSION['listesEtudiant']=$test1->getEtud($idniveau);
+            }
+            // var_dump($_SESSION['listesEtudiant']);
+            header("location:../views/coordinateur/listetudiant.php");
+            exit();
         }
 // prof les notes
             // listes des etudiants
@@ -150,7 +166,7 @@ switch ($_GET['action'])
             $idniveau=$test->getidniveau($idProf,$idmod);
             require_once '../controllers/GetEtudiant.php';
             $test1=new Etudiant;
-            $_SESSION['listesEtudiant']=$test1->getEtubyNiv($idniveau);
+            $_SESSION['listesEtudiant']=$test1->getEtubyNiv($idniveau,$idProf,$idmod);
             if(empty($_SESSION['listesEtudiant'])){
                 $_SESSION['listesEtudiant']=$test1->getEtud($idniveau);
             }
@@ -228,7 +244,9 @@ switch ($_GET['action'])
                         $_SESSION['message'] = "There was an error submitting the notes.";
                         $_SESSION['message_type'] = "error";
                     }
-                    $_SESSION['inserer_note'] = true;
+                    header("location:../views/prof/ListeEtu.php");
+                    exit();
+                    // $_SESSION['inserer_note'] = true;
                 } else {
                     $_SESSION['message'] = "No student data received.";
                     $_SESSION['message_type'] = "error";
@@ -237,8 +255,7 @@ switch ($_GET['action'])
                 // require_once '../controllers/GetEtudiant.php';
                 // $test1=new Etudiant;
                 // $_SESSION['listesEtudiant']=$test1->getEtubyNiv($idniveau);
-                header("location:../views/prof/ListeEtu.php");
-                exit();
+               
             
           
 

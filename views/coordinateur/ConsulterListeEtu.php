@@ -33,56 +33,94 @@ include '../../securite.php';
         table{
            text-align: center;
         }
-        a {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-a span {
-  padding-bottom: 7px;
-  letter-spacing: 4px;
-  font-size: 14px;
-  padding-right: 15px;
-  text-transform: uppercase;
-}
-
-a svg {
-  transform: translateX(-8px);
-  transition: all 0.3s ease;
-}
-
-.cta:hover svg {
-  transform: translateX(0);
-}
-
-.cta:active svg {
-  transform: scale(0.9);
-}
-
-.hover-underline-animation {
+        .cta {
+            padding:3 rem;
+            width: 10.5em;
+        height: 2.3em;
+        margin: 0.5em; 
   position: relative;
-  color: black;
-  padding-bottom: 20px;
+  margin: 0;
+  padding: 0.8em 1em;
+  outline: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  background-color: #333;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 300;
+  font-size: 18px;
+  font-family: inherit;
+  z-index: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
 }
 
-.hover-underline-animation:after {
-  content: "";
+.cta:hover {
+  animation: sh0 0.5s ease-in-out both;
+}
+
+@keyframes sh0 {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: rotate(7deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(-7deg) translate3d(0, 0, 0);
+  }
+
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+
+.cta:hover span {
+  animation: storm 0.7s ease-in-out both;
+  animation-delay: 0.06s;
+}
+
+.cta::before,
+.cta::after {
+  content: '';
   position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
+  right: 0;
   bottom: 0;
-  left: 0;
-  background-color: #000000;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+  z-index: -1;
+  transform: translate(100%, -25%) translate3d(0, 0, 0);
+}
+.cta:hover::before,
+.cta:hover::after {
+  opacity: 0.15;
+  transition: transform 0.2s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
 }
 
-.cta:hover .hover-underline-animation:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+.cta:hover::before {
+  transform: translate3d(50%, 0, 0) scale(0.9);
 }
+
+.cta:hover::after {
+  transform: translate(50%, 0) scale(1.1);
+}
+
+
 
     </style>
 </head>
@@ -95,6 +133,7 @@ a svg {
     <div >
       
         <h1 style="margin-bottom: 2rem;">Liste Etudiants :</h1>
+        <div class="table-responsive">
          <table class="table table-Secondary table-striped table-hover table-bordered">
                 <thead>
                 <tr class="table-dark">
@@ -115,15 +154,9 @@ a svg {
                         <!-- BUTTON -->
                         <td>
                             <form action="../../routing/routing.php" method="GET">
-                                
                             <!-- <input type="hidden" name="id" value="<?php echo htmlspecialchars($etudiant['IdEtudiant']); ?>"> -->
-                            <a href="../../routing/routing.php?detail=<?php echo htmlspecialchars($etudiant['IdEtudiant']); ?>" >
-                            <!-- <button class="cta" type="submit" name="detail"> -->
-                                    <span class="hover-underline-animation">Plus de details</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)"></path>
-                                    </svg>
-                                <!-- </button> -->
+                            <a href="../../routing/routing.php?detail=<?php echo htmlspecialchars($etudiant['IdEtudiant']); ?>" class="cta btn">
+                                    <span class="hover-underline-animation">Plus de details</span>    
                             </a>
                             </form>
                         </td>
@@ -137,6 +170,7 @@ a svg {
             </tbody>
             </tbody>
         </table>
+        </div>
         </form>
 </div>   
     </main>

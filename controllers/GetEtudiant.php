@@ -16,10 +16,10 @@ class GetEtudiant
         
     }
     // prof
-    public function getEtubyNiv($idniv)
+    public function getEtubyNiv($idniv,$idprof,$idmod)
     {
         
-        $resultat=$this->etud->getEtubyNiv($idniv);
+        $resultat=$this->etud->getEtubyNiv($idniv,$idprof,$idmod);
         return $resultat;
         
     }
@@ -35,7 +35,7 @@ class GetEtudiant
 
 }
 
-$test=new GetEtudiant;
-$lol=$test->getEtubyNiv(6);
- var_dump($lol);
+// $test=new GetEtudiant;
+// $lol=$test->getEtubyNiv(6);
+//  var_dump($lol);
 

@@ -17,15 +17,12 @@ class ControllerModules
         $result=$this->modules->GetById($id);
         return $result;
     }
-    // public function getModulesByNiveau($idNiveau) {
-    //     if (isset($_POST['idNiveau'])) {
-    //         $idNiveau = $_POST['idNiveau'];
-    //         $modules = $this->modules->getModulesByNiveau($idNiveau);
-    //         return $modules;
-    //     } else {
-    //         echo json_encode(array('error' => 'idNiveau parameter is missing'));
-    //     }
-    // }
+    public function getModulesByNiveau($idNiveau) {
+        
+            $modules = $this->modules->getModulesByNiveau($idNiveau);
+            return $modules;
+      
+    }
     public function getidniveau($idprof, $idmod){
         $result=$this->modules->getidniveau($idprof, $idmod);
        

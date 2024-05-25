@@ -26,15 +26,17 @@ class Etudiant
         var_dump($result);
         return $result;
     }
-    public function getEtubyNiv($idniv){
+    public function getEtubyNiv($idniv,$idprof,$idmod){
         
 
         global $db;
         $sql = "SELECT Nom,Prenom,IdEtudiant,valeurs FROM etudiant 
         join tempnote on etudiant.IdEtudiant=tempnote.idetu
-        WHERE IdNiveau =:Idniveau";
+        WHERE IdNiveau =:Idniveau and idprof=:Idprof and IdModule=:IdModule";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':Idniveau', $idniv, PDO::PARAM_INT);
+        $stmt->bindParam(':Idprof', $idprof, PDO::PARAM_INT);
+        $stmt->bindParam(':IdModule', $idmod, PDO::PARAM_INT);
         $stmt->execute();        
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         var_dump($result);
