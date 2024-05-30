@@ -88,9 +88,8 @@ include '../../securite.php'
         
                 if(isset($_SESSION['dispModules'])){
                     $counter = 1;
-                    //var_dump($_SESSION['profs']);
+                    // var_dump($_SESSION['dispModules']);
                     foreach ($_SESSION['dispModules'] as $mod) {
-                        //  var_dump( $_SESSION['modules_profs']);
 
                         if (isset($mod['Intitule']) && isset($mod['nom_specialite']) ) {
                                 echo "<tr>";
@@ -98,7 +97,7 @@ include '../../securite.php'
                                 echo "<td>" . $mod['Intitule']. "</td>";
                                 echo "<td>" . $mod['nom_specialite'] . "</td>";
                                 echo "<td>";
-                                echo "<a href=\"# \"\" class=\"btn btn-primary\">Modifier</a>";
+                                echo "<a href=\"../../routing/routing.php?modsp=" . $mod['IdModule'] . "\" class=\"btn btn-primary\">Modifier</a>";
                                 echo "<a href=\"# \"\" class=\"btn btn-success\">Affecter</a>";
                                 echo "<a href=\"# \"\" class=\"btn btn-secondary\">supprimer</a>";
 

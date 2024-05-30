@@ -24,7 +24,19 @@ class Note{
     
         $result = $res->fetchAll(PDO::FETCH_ASSOC);
         return $result;
-    } 
+    }
+    public function insertNoteV($value, $idprof, $idmodule, $idetud){
+        global $db;
+        $sql = "INSERT INTO note (Valeur, idprof,idModule,idEtudiant) VALUES (:value, :idprof, :idmodule, :idetud)";
+        $res = $db->prepare($sql);
+        $res->bindParam(':value', $value, PDO::PARAM_STR); // Adjust PARAM type based on the actual type of 'value'
+        $res->bindParam(':idprof', $idprof, PDO::PARAM_INT);
+        $res->bindParam(':idmodule', $idmodule, PDO::PARAM_INT);
+        $res->bindParam(':idetud', $idetud, PDO::PARAM_INT);
+        $res->execute();
+
+        return $res->rowCount(); // Return the number of rows affected
+} 
     public function insertNote($value, $idprof, $idmodule, $idetud){
             global $db;
             $sql = "INSERT INTO tempnote (valeurs, idprof, idmodule, idetu) VALUES (:value, :idprof, :idmodule, :idetud)";

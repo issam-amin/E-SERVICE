@@ -36,7 +36,10 @@ switch ($_GET['action'])
         header("location:../views/coordinateur/listeniveaux.php");
         exit();
         break;
-        
+    case 'creemploi':
+        header("location:../views/coordinateur/emploi.php");
+        exit();
+        break;
         // PROFESSEUR
         case 'profNote':
             session_start();
@@ -59,16 +62,15 @@ switch ($_GET['action'])
             
         case 'Gestiondemodule':
             session_start();
-            // require_once '../controllers/ControllerChefDep.php';
-            // $chefDep = new ControllerChefDep();
-            // $idUtilisateur= $chefDep->getidDep($_SESSION['IdUser']);
-            // require_once '../controllers/ControllerModules.php';
-            // $disp = new ControllerModules();
-            
-            // $_SESSION['dispModules'] = $disp->displaymod($idUtilisateur);
-            // header("location:../views/chef_dep/gestionModule.php");
-            // exit();
-            // break;
+            require_once '../controllers/ControllerChefDep.php';
+            $chefDep = new ControllerChefDep();
+            $idUtilisateur= $chefDep->getidDep($_SESSION['IdUser']);
+            require_once '../controllers/ControllerModules.php';
+            $disp = new ControllerModules();
+            $_SESSION['dispModules'] = $disp->displaymod($idUtilisateur);
+            header("location:../views/chef_dep/gestionModule.php");
+            exit();
+            break;
 
 
 }
@@ -151,6 +153,47 @@ switch ($_GET['action'])
             header("location:../views/coordinateur/listetudiant.php");
             exit();
         }
+
+        if (isset($_POST['valider'])) {
+            session_start();
+            if (isset($_SESSION['listesEtudiant'])) {
+                $etudiants = $_POST['etudiants'];
+                $_SESSION['etudiantsids'] = $_POST['etudiants'];
+                $success = true;
+                // var_dump($etudiants);
+                
+                
+                foreach ($etudiants as $etudiant) {
+                    // Ensure all keys are set before accessing them
+                    if (isset($etudiant['id'], $etudiant['note'], $etudiant['md'], $etudiant['pr'])) {
+                        $idetud = htmlspecialchars($etudiant['id']);
+                        $note = htmlspecialchars($etudiant['note']);
+                        $idmodule = (int) htmlspecialchars($etudiant['md']);
+                        $idprof = (int) htmlspecialchars($etudiant['pr']);
+                        require_once('../controllers/ControllerNote.php');
+                        $obj = new ControllerNote;
+                        $res = $obj->insertNoteV($note, $idprof, $idmodule, $idetud);
+                        
+                        if (!$res) {
+                            $success = false;
+                        }
+                    } else {
+                        $success = false; // If any key is missing, mark success as false
+                    }
+                }
+            }if ($success) {
+                $_SESSION['message'] = "INSERTION DES NOTES AVEC SUCCES";
+                $_SESSION['message_type'] = "success";
+                $_SESSION['inserer_note'] = true;
+              
+              } else {
+                $_SESSION['message'] = "There was an error submitting the notes.";
+                $_SESSION['message_type'] = "error";
+              }
+            header("location:../views/coordinateur/listetudiant.php");
+            exit();
+        }
+        
 // prof les notes
             // listes des etudiants
             
@@ -255,11 +298,50 @@ switch ($_GET['action'])
                 // require_once '../controllers/GetEtudiant.php';
                 // $test1=new Etudiant;
                 // $_SESSION['listesEtudiant']=$test1->getEtubyNiv($idniveau);
-               
-            
-          
+}
+// CHEF DEPARTEMENT 
+ if (isset($_GET['modsp'])){
+    session_start();
+    $_SESSION['idMod']=$_GET['modsp'];
+    $mdid=$_GET['modsp'];
+    require_once '../controllers/ControllerSpecialite.php';
+    $obj=new ControllerSpecialite;
+    $_SESSION['specilities']=$obj->GetAll();
+    
+    require_once '../controllers/ControllerModules.php';
+    $obj1=new ControllerModules;
+    $_SESSION['nomMod']=$obj1->GetbyIDMod($mdid);
 
-        }
+    header("location:../views/chef_dep/modifier.php");
+    exit();
+ }
+
+ if (isset($_POST['modifSp'])){
+    session_start();
+    $nomMod = $_POST['nomMod'];
+var_dump($nomMod);
+    // Ensure $nomMod is a string
+    if (is_array($nomMod)) {
+        // Handle array case: decide how to convert it to a string
+        // For example, take the first element or join the array elements
+        $nomMod = implode(", ", $nomMod);
+    } else {
+        // Cast $nomMod to a string to ensure it's a string type
+        $nomMod = (string)$nomMod;
+    }
+
+    $idMods = intval($_SESSION['idMod']);
+    $selectedSp = intval($_POST['selectsp']);
+    require_once '../controllers/ControllerModules.php';
+    $obj1 = new ControllerModules();
+    echo "<br><br>";
+    $rowsUpdated = $obj1->updateNomIdSP($idMods, $selectedSp, $nomMod);
+    $_SESSION['nomMod'] = $rowsUpdated;
+    // var_dump($_SESSION['nomMod']);
+    
+    header("location:routing.php?action=Gestiondemodule");
+    exit();
+}
 
      
 

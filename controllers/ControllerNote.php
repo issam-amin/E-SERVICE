@@ -34,4 +34,10 @@ class ControllerNote{
         $result = $this->note->GetNoteEtus($idetu);
         return $result;
     }
+    // inserer apres valider 
+    public function insertNoteV($value, $idprof, $idmodule, $idetud){
+        $result = $this->note-> insertNoteV($value, $idprof, $idmodule, $idetud);
+        return $result;
+    }
+    
 }

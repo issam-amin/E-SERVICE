@@ -119,10 +119,7 @@ include '../../securite.php';
 .cta:hover::after {
   transform: translate(50%, 0) scale(1.1);
 }
-
-
-
-    </style>
+</style>
 </head>
 <body>
     

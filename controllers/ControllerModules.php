@@ -12,6 +12,11 @@ class ControllerModules
         $results=$this->modules->GetAll();
         return $results;  
     }
+    public function GetbyIDMod($idmod)
+    {
+        $results=$this->modules->GetbyIDMod($idmod);
+        return $results;  
+    }
     public function GetById($id)
     {
         $result=$this->modules->GetById($id);
@@ -30,6 +35,11 @@ class ControllerModules
     }
     public function displaymod($iddep){
         $result=$this->modules-> displaymod($iddep);
+       
+        return $result;
+    }
+    public function updateNomIdSP($idmod, $idsp, $nomMod){
+        $result=$this->modules-> updateNomIdSP($idmod, $idsp, $nomMod);
        
         return $result;
     }

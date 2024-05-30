@@ -112,25 +112,28 @@ h1
         <tbody>
             <?php
                 if(isset($_SESSION['listesEtudiant'])){              
-
+// var_dump($_SESSION['listesEtudiant']);
                     $counter = 1;
                                      
                   foreach ($_SESSION['listesEtudiant'] as $Etudiants) {
-                          if (isset($Etudiants['valeurs'])){
-                            // var_dump($_SESSION['listesEtudiant']);
-                            // $_SESSION['checkvalues'] = $Etudiants['valeurs'];
-                            $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
-                           
-                            echo "<tr>";
-                            echo "<th scope=\"row\">" . $counter . "</th>";
-                            echo "<td>" . htmlspecialchars($Etudiants['Nom']) . "</td>";
-                            echo "<td>" . htmlspecialchars($Etudiants['Prenom']) . "</td>";
-                             echo "<td>" . htmlspecialchars($Etudiants['valeurs']) . "</td>";
-                            echo "</tr>";  
-                           
-                            $counter++;
-                      
-                        }else {    
+                    if (isset($Etudiants['valeurs'])){
+                      $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
+                     
+                      echo "<tr>";
+                      echo "<th scope=\"row\">" . $counter . "</th>";
+                      echo "<td>" . htmlspecialchars($Etudiants['Nom']) . "</td>";
+                      echo "<td>" . htmlspecialchars($Etudiants['Prenom']) . "</td>";
+                      echo "<td>" . htmlspecialchars($Etudiants['valeurs']) . "</td>";
+                      echo "</tr>";  
+              
+                      // Add hidden inputs for each student's data
+                      echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]' value='" . htmlspecialchars($Etudiants['IdEtudiant']) . "'>";
+                      echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][pr]' value='" . htmlspecialchars($Etudiants['idprof']) . "'>";
+                      echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][md]' value='" . htmlspecialchars($Etudiants['idmodule']) . "'>";
+                      echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][note]' value='" . htmlspecialchars($Etudiants['valeurs']) . "'>";
+              
+                      $counter++;
+                  } else {    
                 
                           echo "<tr><td colspan='5'>No data available</td></tr>";
                           break;
@@ -140,13 +143,26 @@ h1
                       }else {    
                 
                     echo "<tr><td colspan='5'>No data available</td></tr>";
-                }         
+                }  
+                  
                 echo "</tbody>";
                 echo "</table>";  
                   ?>
+                  <button class="btn btn-primary" type="submit" name="valider" value="valider">Valider</button>
+                  <?php
 
+if (isset($_SESSION['message'])) {
+    $message_type = isset($_SESSION['message_type']) ? $_SESSION['message_type'] : 'success';
+    $alert_class = ($message_type == 'success') ? 'alert-success' : 'alert-danger';
+    echo "<div class='alert $alert_class' role='alert' aria-label=close'>{$_SESSION['message']}</div>";
+    unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
+}
+
+?> 
+</form>
     </main>
-
+   
     <!-- <script>
 function showId() {
      var select = document.getElementById('niveauSelect');

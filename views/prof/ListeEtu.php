@@ -1,4 +1,4 @@
-<?php
+    <?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -134,13 +134,8 @@ session_start();
                         }
                     }
                     
-                    foreach ($_SESSION['listesEtudiant'] as $Etudiants) {
-
-                            ;
-                       
+                    foreach ($_SESSION['listesEtudiant'] as $Etudiants) {                    
                         if (isset($Etudiants['valeurs'])) {
-                            // var_dump($Etudiants['valeurs']);
-                            // $_SESSION['checkvalues'] = $Etudiants['valeurs'];
                             $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];
                            
                             echo "<tr>";
@@ -220,6 +215,7 @@ session_start();
         }
     });
 </script>
+
 
   
 

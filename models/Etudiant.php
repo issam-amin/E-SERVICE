@@ -30,7 +30,7 @@ class Etudiant
         
 
         global $db;
-        $sql = "SELECT Nom,Prenom,IdEtudiant,valeurs FROM etudiant 
+        $sql = "SELECT Nom,Prenom,IdEtudiant,valeurs,idprof,idmodule FROM etudiant 
         join tempnote on etudiant.IdEtudiant=tempnote.idetu
         WHERE IdNiveau =:Idniveau and idprof=:Idprof and IdModule=:IdModule";
         $stmt = $db->prepare($sql);

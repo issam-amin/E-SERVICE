@@ -14,6 +14,15 @@ class Modules{
         $result = $res->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function GetbyIDMod($idmod)
+    {
+        global $db;
+        $res = $db->prepare("SELECT Intitule FROM module where IdModule=:idmod");
+        $res->bindParam(':idmod', $idmod, PDO::PARAM_INT);
+        $res->execute();
+        $result = $res->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function GetById($id)
     {
         global $db;
@@ -58,7 +67,7 @@ class Modules{
     public function displaymod($iddep) {
         global $db;
     
-        $sql = "SELECT module.IdModule, module.Intitule, niveau.nivNom, departement.Nom, specialite.nom_specialite
+        $sql = "SELECT module.IdModule, module.Intitule, niveau.nivNom, departement.Nom, specialite.nom_specialite,specialite.id_specialite
                 FROM module 
                 INNER JOIN niveau ON module.IdNiveau = niveau.IdNiveau
                 INNER JOIN departement ON module.IdDep = departement.IdDep
@@ -76,8 +85,22 @@ class Modules{
             return [];
         }
     }
+    public function updateNomIdSP($idmod, $idsp, $nomMod)
+    {
+        global $db;
     
+        
+        var_dump($nomMod);
     
+        $sql = "UPDATE module 
+                SET Intitule = :NouveauNom, idSpecialite = :NouvelIdSpecialite 
+                WHERE IdModule = :IdDuModule";
+        $res = $db->prepare($sql);
+        $res->bindParam(':NouveauNom', $nomMod, PDO::PARAM_STR);
+        $res->bindParam(':NouvelIdSpecialite', $idsp, PDO::PARAM_INT);
+        $res->bindParam(':IdDuModule', $idmod, PDO::PARAM_INT);
+        $res->execute();
     
-
-}
+        return $res->rowCount(); // Return the number of affected rows
+    }
+}    

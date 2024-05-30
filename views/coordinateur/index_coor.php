@@ -95,7 +95,7 @@
 
             <div class="div1 maindiv"> 
                 <p >
-                    <a href="#">Emploi de temps</a>
+                    <a href="../../routing/routing.php?action=creemploi">Emploi de temps</a>
                     <i class="fa-solid fa-calendar-days"></i>
                 </p>
             </div>
