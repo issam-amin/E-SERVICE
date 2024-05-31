@@ -108,8 +108,8 @@
              </div>
             <div class="div3 maindiv">
                 <p>
-                    <a href="#">Messagerie</a> 
-                    <i class="fa-regular fa-envelope"></i>
+                    <a href="#">Consulter Notes Etudiant</a> 
+                    <i class='bx bx-search-alt' ></i>
                 </p>
             </div>
             <div class="div4 maindiv">
