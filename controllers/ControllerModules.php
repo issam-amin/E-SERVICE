@@ -43,6 +43,11 @@ class ControllerModules
        
         return $result;
     }
+    public function getmod($iddep){
+        $result=$this->modules-> getmod($iddep);
+       
+        return $result;
+    }
 }
 
 // $chefDep = new ControllerModules();

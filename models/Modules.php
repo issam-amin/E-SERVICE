@@ -64,6 +64,23 @@ class Modules{
         
        return $result['IdNiveau'];
     }
+    public function getmod($iddep)
+    {
+        global $db;
+        $sql = "SELECT module.IdModule, module.Intitule, specialite.nom_specialite,specialite.id_specialite
+                FROM module 
+                INNER JOIN specialite ON module.idSpecialite = specialite.id_specialite
+                WHERE IdDep=:iddep";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':iddep', $iddep, PDO::PARAM_INT);    
+        $stmt->execute();
+        
+        // Fetch the result as an associative array
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+       return $result;
+    }
+
     public function displaymod($iddep) {
         global $db;
     

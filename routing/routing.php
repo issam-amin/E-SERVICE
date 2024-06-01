@@ -65,9 +65,11 @@ switch ($_GET['action'])
             require_once '../controllers/ControllerChefDep.php';
             $chefDep = new ControllerChefDep();
             $idUtilisateur= $chefDep->getidDep($_SESSION['IdUser']);
+            $_SESSION['depart']=$idUtilisateur['idDep'];
             require_once '../controllers/ControllerModules.php';
             $disp = new ControllerModules();
-            $_SESSION['dispModules'] = $disp->displaymod($idUtilisateur);
+            // $_SESSION['dispModules'] = $disp->displaymod($idUtilisateur['idDep']);
+            $_SESSION['dispModules'] = $disp->getmod($idUtilisateur['idDep']);
             header("location:../views/chef_dep/gestionModule.php");
             exit();
             break;
