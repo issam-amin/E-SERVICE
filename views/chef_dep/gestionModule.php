@@ -89,7 +89,7 @@ if (isset($_GET['action'])) {
         }
 
         .btn-add {
-            background-color: green;
+            background-color: rgb(54, 165, 158);
             border: none;
             color: white;
             padding: 10px 20px;

@@ -1,7 +1,9 @@
 <?php
+session_start(); 
 
-// if (isset($_SESSION['autoriser'])) {
-//     session_start();
-//     header('Location: ../../public/login.php');
-//     exit();
-// }
+if (!isset($_SESSION['autoriser']) || $_SESSION['autoriser'] !== true) {
+   
+    header('Location: ../../public/login.php');
+    exit();
+}
+?>

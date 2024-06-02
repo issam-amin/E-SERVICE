@@ -1,4 +1,7 @@
-
+<?php
+// session_start();
+require_once '../../securite.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +28,8 @@
             <input placeholder="Search" type="search" class="input">
           </div>
 
-<!-- <?php echo "<span class='name'>Bienvenue ".$_SESSION['Nom']." ".$_SESSION['Prenom']."</span>";?> -->
+          <?php echo "<span class='name'>Bienvenue ".$_SESSION['Nom']." ".$_SESSION['Prenom']."</span>";?>
+
     <div class="topBar_right ">
         <!--LOG OUT BUTTUN-->
         <a href="../../logout.php">
