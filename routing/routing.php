@@ -36,8 +36,8 @@ switch ($_GET['action'])
         header("location:../views/coordinateur/listeniveaux.php");
         exit();
         break;
-    case 'creemploi':
-        header("location:../views/coordinateur/emploi.php");
+        case 'emploi':
+        header("location:../views/coordinateur/choisir-niveau.php");
         exit();
         break;
         // PROFESSEUR

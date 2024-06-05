@@ -1,5 +1,5 @@
 <?php
-require_once '../config/Database.php';
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'\WEB_PROJECT\config\Database.php');
 class Modules{
 
 
@@ -119,5 +119,18 @@ class Modules{
         $res->execute();
     
         return $res->rowCount(); // Return the number of affected rows
+    }
+    public function getModulesParIdFiliere($idfiliere)
+    {
+        global $db;
+        $sql = "SELECT IdNiveau FROM module WHERE IdProf = :idprof AND IdModule = :idmod";
+        $stmt = $db->prepare($idfiliere);
+        $stmt->bindParam(':idprof', $idfiliere, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Fetch the result as an associative array
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+       return $result['IdNiveau'];
     }
 }    

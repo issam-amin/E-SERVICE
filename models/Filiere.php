@@ -1,5 +1,5 @@
 <?php
-require_once '../config/Database.php';
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'\WEB_PROJECT\config\Database.php');
 class Filiere
 {
     public function __construct()
@@ -20,6 +20,16 @@ class Filiere
        $result = $res->fetch(PDO::FETCH_ASSOC);
        return $result;
    }
+   public function getfilierCor($idcor)
+   {
+    var_dump($idcor);
+       global $db;
+       $res = $db->prepare("SELECT idfiliere FROM filiere WHERE IdCoord = ?");
+       $res->execute(array($idcor));
+       $result = $res->fetch(PDO::FETCH_ASSOC);
+       return $result;
+   }
+
 //    public function getbyUser()
 //    {
 //        global $db;

@@ -78,9 +78,9 @@
                 
 
                     <li class="nav-link">
-                        <a href="../../routing/routing.php?action=etudiant">
-                        <i class='bx bx-git-pull-request icon'></i>
-                            <span class="text nav-text">Consulter liste <br>Etudiants</span>
+                        <a href="../../routing/routing.php?action=emploi">
+                        <i class='bx bx-calendar icon'></i>
+                         <span class="text nav-text">Gestion Emploi</span>
                         </a>
                     </li>
 

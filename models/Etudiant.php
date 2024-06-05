@@ -1,5 +1,5 @@
 <?php
-require_once '../config/Database.php';
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'\WEB_PROJECT\config\Database.php');
 class Etudiant
 {
 
