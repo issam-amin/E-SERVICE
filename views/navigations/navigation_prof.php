@@ -75,8 +75,8 @@ require_once '../../securite.php';
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../prof/PubCour.php">
-                            <i class='bx bx-git-pull-request icon'></i> 
+                        <a href="../../routing/routing.php?action=Modulelist">
+                        <i class='bx bx-file icon'></i>
                             <span class="text nav-text">Publier Cours</span>
                         </a>
                     </li>
@@ -89,12 +89,12 @@ require_once '../../securite.php';
                         </a>
                     </li>
 
-                    <li class="nav-link">
+                    <!-- <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Notifications</span>
                         </a>
-                    </li>
+                    </li> -->
 
                 </ul>
             </div>

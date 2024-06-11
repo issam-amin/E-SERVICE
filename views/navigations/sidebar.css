@@ -312,6 +312,7 @@ body.dark .home .text{
 
 /*top bar*/
 .topBar{
+    z-index: 100;
     margin: 0; padding: 0;
     position: fixed;
     top: 0;

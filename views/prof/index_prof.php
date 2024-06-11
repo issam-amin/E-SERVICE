@@ -96,7 +96,7 @@
 
             <div class="div1 maindiv"> 
                 <p >
-                    <a href="#">Emploi de temps</a>
+                    <a href="../../routing/routing.php?action=Modulelist">Consulter Modules</a>
                     <i class="fa-solid fa-calendar-days"></i>
                 </p>
             </div>

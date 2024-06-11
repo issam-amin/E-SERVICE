@@ -13,6 +13,15 @@ class Coordinateur
         $tab = $res->fetch(PDO::FETCH_ASSOC);
         return $tab;
     }
+    public function Getidfilier($iduser)
+    {
+        global $db;
+        $res = $db->prepare("SELECT Idfiliere FROM coordinateur where  IdUser=?");
+        $params = array($iduser);  /*je peux directement les inserer dans le execute*/
+        $res->execute($params);
+        $tab = $res->fetch(PDO::FETCH_ASSOC);
+        return $tab;
+    }
    
 
   

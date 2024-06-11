@@ -31,7 +31,7 @@ session_start();
  width: 6.5em;
  height: 2.3em;
  margin: 0.5em; 
- color: white;
+ color: burlywood;
  border: none;
  border-radius: 0.625em;
  font-size: 20px;
@@ -68,7 +68,7 @@ button:hover:after {
 </head>
 <body>
 <header class="header">
-    <?php require_once '../navigations/navigation_coor.php';?>
+    <?php require_once '../navigations/navigation_prof.php';?>
 </header>
 <main class="main">
 <h1>Tables des Modules</h1>
@@ -77,26 +77,27 @@ button:hover:after {
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Modules</th>
-                <th scope="col">Prof</th>
+                <th scope="col">Niveau</th>
                 <th scope="col">Action</th> 
             </tr>
         </thead>
         <tbody>
             <?php
             
-       
-                if(isset($_SESSION['list_modul_niv'])){
+        // var_dump($_SESSION);
+                if(isset($_SESSION['modules_Specifique_Prof'])){
                     $counter = 1;                  
-                            // var_dump( $_SESSION['list_modul_niv']);
-                            foreach ($_SESSION['list_modul_niv'] as $module) {
-                                $_SESSION['id_Module']=$module['IdModule'];
-                                $_SESSION['id_Prof']=$module['IdProf'];
+                            // var_dump( $_SESSION['modules_Specifique_Prof']);
+                            foreach ($_SESSION['modules_Specifique_Prof'] as $module) {
+                                $_SESSION['IdModule']=$module['IdModule'];
+                                $_SESSION['IdProf']=$module['IdProf'];
+                                // $_SESSION['nivNom']=$module['nivNom'];
                                 echo "<tr>";
                                 echo "<th scope=\"row\">" . $counter . "</th>";
                                 echo "<td>" . $module['Intitule'] . "</td>";
-                                echo "<td>" . $module['Nom'] ."  ". $module['Prenom']."</td>";
+                                echo "<td>" . $module['nivNom'] . "</td>";
                                 echo "<td>";
-                                echo "<a href=\"../../routing/routing.php?niveau1=" . $module['IdNiveau']."&module1=" . $module['IdModule'] ."&prof1=" . $module['IdProf'] . "\" class=\"btn btn-secondary\">Notes</a>";
+                                echo "<a href=\"../../routing/routing.php?module2=" . $module['IdModule'] ."&prof2=" . $module['IdProf'] ."\" class=\"btn btn-link\">Inserer</a>";
                             
                                 echo "</td>";
                                 echo "</tr>"; 
@@ -110,9 +111,9 @@ button:hover:after {
         
                     
                     
-                //  else {
-                //     echo "<tr><td colspan='5'>No data available</td></tr>";
-                // }
+                 else {
+                    echo "<tr><td colspan='5'>No data available</td></tr>";
+                }
             ?>
             
         </tbody>

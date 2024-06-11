@@ -77,6 +77,7 @@ button:hover:after {
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Modules</th>
+                <th scope="col">Niveau</th>
                 <th scope="col">Action</th> 
             </tr>
         </thead>
@@ -90,11 +91,13 @@ button:hover:after {
                             foreach ($_SESSION['modules_Specifique_Prof'] as $module) {
                                 $_SESSION['IdModule']=$module['IdModule'];
                                 $_SESSION['IdProf']=$module['IdProf'];
+                                // $_SESSION['nivNom']=$module['nivNom'];
                                 echo "<tr>";
                                 echo "<th scope=\"row\">" . $counter . "</th>";
                                 echo "<td>" . $module['Intitule'] . "</td>";
+                                echo "<td>" . $module['nivNom'] . "</td>";
                                 echo "<td>";
-                                echo "<a href=\"../../routing/routing.php?module=" . $module['IdModule'] ."&prof=" . $module['IdProf'] . "\" class=\"btn btn-secondary\">Notes</a>";
+                                echo "<a href=\"../../routing/routing.php?module=" . $module['IdModule'] ."&prof=" . $module['IdProf'] ."\" class=\"btn btn-secondary\">Notes</a>";
                             
                                 echo "</td>";
                                 echo "</tr>"; 

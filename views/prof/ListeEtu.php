@@ -133,7 +133,7 @@ session_start();
                             break;
                         }
                     }
-                    
+                    // var_dump($_SESSION['listesEtudiant']);
                     foreach ($_SESSION['listesEtudiant'] as $Etudiants) {                    
                         if (isset($Etudiants['valeurs'])) {
                             $_SESSION['etudiantsids'] = $Etudiants['IdEtudiant'];

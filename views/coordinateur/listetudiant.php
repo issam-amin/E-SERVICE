@@ -138,6 +138,7 @@ function exportCsv($data) {
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]' value='" . htmlspecialchars($Etudiants['IdEtudiant']) . "'>";
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][pr]' value='" . htmlspecialchars($Etudiants['idprof']) . "'>";
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][md]' value='" . htmlspecialchars($Etudiants['idmodule']) . "'>";
+                                echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][validation]' value='" . htmlspecialchars($Etudiants['verif']) . "'>";
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][note]' value='" . htmlspecialchars($Etudiants['valeurs']) . "'>";
                                 $counter++;
                             } else {
@@ -151,7 +152,7 @@ function exportCsv($data) {
                     ?>
                 </tbody>
             </table>
-            <button class="btn btn-primary" type="submit" name="valider" value="valider">Valider</button>
+            <button class="btn btn-primary" type="submit" name="validerVer" value="valider">Valider</button>
             <button class="btn btn-secondary" type="submit" name="export_csv" value="export_csv">Export CSV</button>
             <?php
             if (isset($_SESSION['message'])) {

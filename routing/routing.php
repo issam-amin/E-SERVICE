@@ -14,6 +14,21 @@ if(isset($_POST['connect'])){
 if(isset($_GET['action'])){
 switch ($_GET['action'])
 {
+    // etudiant
+    case 'NoteEtu':
+        session_start();
+// get etudiant
+        require_once '../controllers/loginController.php';
+        $obj1=new Getelement();
+        $idetu=$obj1->GetIdEtu($_SESSION['IdUser']);
+        // var_dump($idetu);
+        require_once '../controllers/ControllerNote.php';
+        $obj=new ControllerNote();
+        $_SESSION['modSPEtu']=$obj->GetNoteEtus($idetu['IdEtudiant']);
+        // var_dump($_SESSION['modSPEtu']);
+        header("location:../views/etudiant/ConsulterNote.php");
+        exit();
+        break;
     // COORDINATEUR
     case 'module':
         session_start();
@@ -36,24 +51,45 @@ switch ($_GET['action'])
         header("location:../views/coordinateur/listeniveaux.php");
         exit();
         break;
-        case 'emploi':
+    case 'emploi':
+        require_once '../controllers/loginController.php';
+        $obj=new Getelement();
+        $id=$_SESSION['IdUser'];
+        $_SESSION['niveaux']=$obj->GetNivbyIdUs($id);
+        // var_dump($obj->GetNivbyIdUs($id));
         header("location:../views/coordinateur/choisir-niveau.php");
         exit();
         break;
+
+
+        
         // PROFESSEUR
+        case 'Modulelist':
+            require_once '../controllers/ControllerProf.php';
+            $prof=new ControllerProf(); 
+            $test=$prof->getprofbyuser($_SESSION['IdUser']);
+            // var_dump($test['IdProf']);
+            echo "<br>";
+            // recuperation des modules du profs
+            require_once '../controllers/ControllerNote.php';
+            $test1 = new ControllerNote();
+            $_SESSION['modules_Specifique_Prof']=$test1->getmodbyidprof($test['IdProf']);
+            header("location:../views/prof/ConsulterListeModules.php");
+            exit();
+            break;
         case 'profNote':
             session_start();
             // recuperation de id  prof
             require_once '../controllers/ControllerProf.php';
             $prof=new ControllerProf(); 
             $test=$prof->getprofbyuser($_SESSION['IdUser']);
-            var_dump($test['IdProf']);
+            // var_dump($test['IdProf']);
             echo "<br>";
             // recuperation des modules du profs
             require_once '../controllers/ControllerNote.php';
             $test1 = new ControllerNote();
             $_SESSION['modules_Specifique_Prof']=$test1->getmodbyidprof($test['IdProf']);           
-            var_dump($_SESSION['modules_Specifique_Prof']);
+            // var_dump($_SESSION['modules_Specifique_Prof']);
             echo "<br>";
             header("location:../views/prof/noteEtu.php");
             exit();
@@ -117,7 +153,7 @@ switch ($_GET['action'])
             require_once '../controllers/ControllerNote.php';
             $obj=new ControllerNote();
             $_SESSION['mod1Etu']=$obj->GetNoteEtus($idetu);
-            var_dump($_SESSION['mod1Etu']);
+            // var_dump($_SESSION['mod1Etu']);
             header("location:../views/coordinateur/module1Etu.php");
             exit();
         // var_dump($_GET['detail']);
@@ -136,14 +172,14 @@ switch ($_GET['action'])
             exit();
         
         }
-        if(isset($_GET['module']) &&isset($_GET['prof'])&&isset($_GET['niveau'])){
+        if(isset($_GET['module1']) &&isset($_GET['prof1'])&&isset($_GET['niveau1'])){
             session_start();
             require_once '../controllers/ControllerModules.php';
             $test=new Modules();
-            $idmod = intval($_GET['module']);
-            $idProf = intval($_GET['prof']);
-            $_SESSION['IdModule']=$_GET['module'];
-            $_SESSION['IdProf']=$_GET['prof'];
+            $idmod = intval($_GET['module1']);
+            $idProf = intval($_GET['prof1']);
+            $_SESSION['IdModule']=$_GET['module1'];
+            $_SESSION['IdProf']=$_GET['prof1'];
             $idniveau=$test->getidniveau($idProf,$idmod);
             require_once '../controllers/GetEtudiant.php';
             $test1=new Etudiant;
@@ -156,33 +192,35 @@ switch ($_GET['action'])
             exit();
         }
 
-        if (isset($_POST['valider'])) {
+        if (isset($_POST['validerVer'])) {
             session_start();
             if (isset($_SESSION['listesEtudiant'])) {
                 $etudiants = $_POST['etudiants'];
                 $_SESSION['etudiantsids'] = $_POST['etudiants'];
                 $success = true;
                 // var_dump($etudiants);
-                
-                
-                foreach ($etudiants as $etudiant) {
-                    // Ensure all keys are set before accessing them
-                    if (isset($etudiant['id'], $etudiant['note'], $etudiant['md'], $etudiant['pr'])) {
-                        $idetud = htmlspecialchars($etudiant['id']);
-                        $note = htmlspecialchars($etudiant['note']);
-                        $idmodule = (int) htmlspecialchars($etudiant['md']);
-                        $idprof = (int) htmlspecialchars($etudiant['pr']);
-                        require_once('../controllers/ControllerNote.php');
-                        $obj = new ControllerNote;
-                        $res = $obj->insertNoteV($note, $idprof, $idmodule, $idetud);
-                        
-                        if (!$res) {
-                            $success = false;
-                        }
-                    } else {
-                        $success = false; // If any key is missing, mark success as false
+                               
+            foreach ($etudiants as $etudiant) {
+                // Ensure all keys are set before accessing them
+                if (isset($etudiant['id'], $etudiant['note'], $etudiant['md'], $etudiant['pr'],$etudiant['validation'])) {
+                    $idetud = htmlspecialchars($etudiant['id']);
+                    // $note = htmlspecialchars($etudiant['note']);
+                    $idmodule = (int) htmlspecialchars($etudiant['md']);
+                    $idprof = (int) htmlspecialchars($etudiant['pr']);
+                    $idverif=(int)1;
+                    var_dump($etudiant['validation']);
+                    require_once('../controllers/ControllerNote.php');
+                    $obj = new ControllerNote;
+                    $res = $obj->NoteV($idverif, $idprof, $idmodule, $idetud);
+                    var_dump($res);
+                    
+                    if (!$res) {
+                        $success = false;
                     }
+                } else {
+                    $success = false; // If any key is missing, mark success as false
                 }
+            }
             }if ($success) {
                 $_SESSION['message'] = "INSERTION DES NOTES AVEC SUCCES";
                 $_SESSION['message_type'] = "success";
@@ -192,8 +230,7 @@ switch ($_GET['action'])
                 $_SESSION['message'] = "There was an error submitting the notes.";
                 $_SESSION['message_type'] = "error";
               }
-            header("location:../views/coordinateur/listetudiant.php");
-            exit();
+           
         }
         
 // prof les notes
@@ -253,14 +290,14 @@ switch ($_GET['action'])
                         $_SESSION['message'] = "There was an error submitting the notes.";
                         $_SESSION['message_type'] = "error";
                     }
-                    $_SESSION['inserer_note'] = true;
+                    
                 } else {
                     $_SESSION['message'] = "No student data received.";
                     $_SESSION['message_type'] = "error";
                 }
             
-            header("location:../views/prof/ListeEtu.php");
-            exit();
+                header("location:./routing.php?module=" . $idmodule ."&prof=" . $idprof ."");
+                exit();
         }
         if (isset($_POST['Updatenote'])){
             session_start();     
@@ -268,14 +305,16 @@ switch ($_GET['action'])
                 $etudiants = $_POST['etudiants'];
                 $_SESSION['etudiantsids'] = $_POST['etudiants'];
                 $success = true;
-        
+                // var_dump($_SESSION['listesEtudiant']);
                 require_once('../controllers/ControllerNote.php');
                 $obj = new ControllerNote;
         
                 foreach ($etudiants as $id => $etudiant) {
                     $idetud = htmlspecialchars($etudiant['id']);
                     $note = htmlspecialchars($etudiant['note']);
-                    $res = $obj->updatenote($note, $idetud);
+                    $idmodule = (int)$_SESSION['IdModule'];
+                    $idprof = (int)$_SESSION['IdProf'];
+                    $res = $obj->updatenote($note, $idetud,$idmodule,$idprof);
                     if (!$res) {
                         $success = false;
                     }
@@ -289,18 +328,34 @@ switch ($_GET['action'])
                         $_SESSION['message'] = "There was an error submitting the notes.";
                         $_SESSION['message_type'] = "error";
                     }
-                    header("location:../views/prof/ListeEtu.php");
+                    header("location:./routing.php?module=" . $idmodule ."&prof=" . $idprof ."");
                     exit();
-                    // $_SESSION['inserer_note'] = true;
-                } else {
+                
+            } else {
                     $_SESSION['message'] = "No student data received.";
                     $_SESSION['message_type'] = "error";
                 }
 
-                // require_once '../controllers/GetEtudiant.php';
-                // $test1=new Etudiant;
-                // $_SESSION['listesEtudiant']=$test1->getEtubyNiv($idniveau);
-}
+                    
+    }
+    if(isset($_GET['module2']) &&isset($_GET['prof2'])) {
+        session_start();
+        $_SESSION['modupload']=$_GET['module2'];
+        $_SESSION['profpload']=$_GET['prof2'];
+        header("location:../views/prof/UPLOAD.php");
+        exit();
+    }
+    if($_SERVER["REQUEST_METHOD"] == "POST" ){
+        session_start();
+        require_once '../controllers/ControllerFile.php';
+        $filenames = $_FILES["file"]["name"];
+        $filesize = $_FILES["file"]["size"];
+        $filetype = $_FILES["file"]["type"];
+        $modprof=$_SESSION['modupload'];
+        $profid=$_SESSION['profpload'];
+        $file = new ControllerFile();  
+        $file->upload($filenames, $filesize, $filetype,$profid,$modprof);
+    }
 // CHEF DEPARTEMENT 
  if (isset($_GET['modsp'])){
     session_start();

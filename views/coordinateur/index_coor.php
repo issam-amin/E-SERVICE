@@ -95,7 +95,7 @@
 
             <div class="div1 maindiv"> 
                 <p >
-                    <a href="../../routing/routing.php?action=creemploi">Emploi de temps</a>
+                    <a href="../../routing/routing.php?action=emploi">Gestion Emploi</a>
                     <i class="fa-solid fa-calendar-days"></i>
                 </p>
             </div>
@@ -108,7 +108,7 @@
              </div>
             <div class="div3 maindiv">
                 <p>
-                    <a href="#">Consulter Notes Etudiant</a> 
+                    <a href="../../routing/routing.php?action=module">Consulter Notes</a> 
                     <i class='bx bx-search-alt' ></i>
                 </p>
             </div>

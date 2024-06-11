@@ -63,7 +63,11 @@ class Getelement
         $tab = $this->usermodel->GetNivbyIdUs($iduser);
         return $tab;
     }
-
+    public function GetIdEtu($id)
+    {
+        $tab = $this->usermodel->GetIdEtu($id);
+        return $tab;
+    }
  
 }
 

@@ -108,8 +108,8 @@
              </div>
             <div class="div3 maindiv">
                 <p>
-                    <a href="#">Messagerie</a> 
-                    <i class="fa-regular fa-envelope"></i>
+                    <a href="../../routing/routing.php?action=NoteEtu">Consultation Notes</a> 
+                    <img src="../../img/grade1.png" alt="grades">
                 </p>
             </div>
             <div class="div4 maindiv">

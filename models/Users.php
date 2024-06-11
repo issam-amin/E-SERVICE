@@ -49,6 +49,22 @@ class Users
         return $tab;
         
     }
+    public function GetIdEtu($id){
+        global $db;
+        $res = $db->prepare("SELECT * FROM users
+        join etudiant on users.IdUser=etudiant.IdUser
+        WHERE users.IdUser = :iduser");
+        
+        $params = array(':iduser' => $id);
+        $res->execute($params);
+        $tab = $res->fetch(PDO::FETCH_ASSOC);
+        
+        if ($tab === false) {
+            return null;
+        }
+        
+        return $tab;
+    }
 
   
 }

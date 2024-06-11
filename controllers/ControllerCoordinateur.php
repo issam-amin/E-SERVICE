@@ -13,5 +13,11 @@ class ControllerCoord{
         // var_dump($results);
         return $results;  
     }
+    public function  Getidfilier($iduser)
+    {
+        $results=$this->coord-> Getidfilier($iduser);
+        // var_dump($results);
+        return $results;  
+    }
 }
 ?>

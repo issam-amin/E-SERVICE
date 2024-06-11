@@ -17,7 +17,12 @@ class Note{
    
     function getmodbyidprof($idprof){
         global $db;
-        $sql="SELECT * from module WHERE IdProf = :idprof";
+        $sql="SELECT * 
+            FROM module 
+            JOIN niveau ON niveau.IdNiveau = module.IdNiveau
+            WHERE IdProf = :idprof
+            ORDER BY module.IdNiveau ASC;
+            ";
         $res = $db->prepare($sql);
         $res->bindParam(':idprof', $idprof, PDO::PARAM_INT);
         $res->execute();
@@ -25,18 +30,21 @@ class Note{
         $result = $res->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function insertNoteV($value, $idprof, $idmodule, $idetud){
+    public function NoteV($verif, $idprof, $idmodule, $idetud) {
         global $db;
-        $sql = "INSERT INTO note (Valeur, idprof,idModule,idEtudiant) VALUES (:value, :idprof, :idmodule, :idetud)";
+        $sql = "UPDATE tempnote
+                SET verif = :verif
+                WHERE idetu = :idetu AND idmodule = :idmod AND idprof = :idprof";
         $res = $db->prepare($sql);
-        $res->bindParam(':value', $value, PDO::PARAM_STR); // Adjust PARAM type based on the actual type of 'value'
-        $res->bindParam(':idprof', $idprof, PDO::PARAM_INT);
-        $res->bindParam(':idmodule', $idmodule, PDO::PARAM_INT);
-        $res->bindParam(':idetud', $idetud, PDO::PARAM_INT);
+        $res->bindParam(':verif', $verif, PDO::PARAM_STR); 
+        $res->bindParam(':idetu', $idetud, PDO::PARAM_STR); 
+        $res->bindParam(':idprof', $idprof, PDO::PARAM_STR); 
+        $res->bindParam(':idmod', $idmodule, PDO::PARAM_STR); 
         $res->execute();
-
-        return $res->rowCount(); // Return the number of rows affected
-} 
+    
+        return $res->rowCount(); 
+    }
+    
     public function insertNote($value, $idprof, $idmodule, $idetud){
             global $db;
             $sql = "INSERT INTO tempnote (valeurs, idprof, idmodule, idetu) VALUES (:value, :idprof, :idmodule, :idetud)";
@@ -67,12 +75,14 @@ class Note{
             die("Query failed: " . $e->getMessage());
         }
     }
-    public function updatenote($value,$idetu){
+    public function updatenote($value,$idetu,$idmod,$idprof){
                 global $db;
-                $sql = "UPDATE tempnote SET valeurs = :valeur WHERE idetu = :idetu";
+                $sql = "UPDATE tempnote SET valeurs = :valeur WHERE idetu = :idetu and tempnote.idmodule=:idmod and tempnote.idprof=:idprof";
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam(':idetu', $idetu, PDO::PARAM_INT);
                 $stmt->bindParam(':valeur', $value, PDO::PARAM_INT);
+                $stmt->bindParam(':idmod', $idmod, PDO::PARAM_INT);
+                $stmt->bindParam(':idprof', $idprof, PDO::PARAM_INT);
                 $stmt->execute();
                 return $stmt;
     }
@@ -120,6 +130,7 @@ class Note{
         $result = $res->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
 
 }
 

@@ -113,7 +113,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <p>Are you sure you want to delete the module <?= htmlspecialchars($module['Intitule']) ?>?</p>
         <form action="" method="post" onsubmit="return confirmDeletion();">
             <input type="submit" name="submit" value="Delete" class="btn">
-            <a href="display.php" class="btn btn-cancel">Cancel</a>
+            <a href="../../routing/routing.php?action=Gestiondemodule" class="btn btn-cancel">Cancel</a>
         </form>
     </div>
 </body>

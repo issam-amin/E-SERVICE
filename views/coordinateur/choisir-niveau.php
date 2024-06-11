@@ -22,7 +22,7 @@ session_start();
         }
         .btn-semester {
             margin: 10px;
-            width: 100px;
+            width: auto;
         }
         .container{
             margin-top: 20px;
@@ -40,6 +40,25 @@ session_start();
         ol , ul{
             padding-left: 0;
         }
+        .box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {  
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;          
+            width: 19rem;
+            height: 25rem;
+            border-radius: 30px;
+            background: #e0e0e0;
+            box-shadow: 15px 15px 30px #bebebe;
+                        
+            }
+            
     </style>
 </head>
 <body>
@@ -48,13 +67,14 @@ session_start();
     </header>
     <div class="main">
     <div class="container-fluid">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h3 class="">Choix de Niveau</h3>
-        </div>
+        
     </div>
-    <div class="mt-4">
+    <div class="box ">
+        <div class="card">
+        
+            <h3 style="text-align: center; ">Choix de Niveau</h3>
+        
             <?php
- 
 
                 if (isset($_SESSION['niveaux']) && !empty($_SESSION['niveaux'])) {
                     foreach ($_SESSION['niveaux'] as $niveau) {
@@ -65,9 +85,8 @@ session_start();
                 }
            ?>
         </div>
-        <!-- <a href="emploi?choix=htmlspecialchars($niveau['IdNiveau'])" class="btn btn-primary btn-semester">Choisir</a>
-        <button type="submit" class="btn btn-primary" style="background: rgba(81, 2, 8, 0.6); border: none;">Choisir</button> -->
-    </form>
+        </div>
+        </form>
 </div>
 
     </div>

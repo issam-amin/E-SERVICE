@@ -26,8 +26,8 @@ class ControllerNote{
         $result = $this->note-> getnoteetu($idmodule, $idprof) ;
         return $result;
     }
-    public function  updatenote($value,$idetu){
-        $result = $this->note->updatenote($value,$idetu);
+    public function  updatenote($value,$idetu,$idmod,$idprof){
+        $result = $this->note->updatenote($value,$idetu,$idmod,$idprof);
         return $result;
     }
     public function  GetNoteEtus($idetu){
@@ -35,8 +35,8 @@ class ControllerNote{
         return $result;
     }
     // inserer apres valider 
-    public function insertNoteV($value, $idprof, $idmodule, $idetud){
-        $result = $this->note-> insertNoteV($value, $idprof, $idmodule, $idetud);
+    public function NoteV($idverif, $idprof, $idmodule, $idetud){
+        $result = $this->note-> NoteV($idverif, $idprof, $idmodule, $idetud);
         return $result;
     }
     
