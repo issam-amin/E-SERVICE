@@ -3,7 +3,7 @@ global $db;
 $host       = 'localhost:3306';
 $username = "root";
 $database  = "projectweb";
-$password = "1234567";
+$password = "";
 
 try {
 

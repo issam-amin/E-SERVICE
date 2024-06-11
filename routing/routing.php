@@ -28,7 +28,7 @@ switch ($_GET['action'])
         // var_dump($_SESSION['modSPEtu']);
         header("location:../views/etudiant/ConsulterNote.php");
         exit();
-        break;
+
     // COORDINATEUR
     case 'module':
         session_start();
@@ -39,7 +39,7 @@ switch ($_GET['action'])
         // var_dump($_SESSION['niveaux'][0]['IdNiveau']);
         header("location:../views/coordinateur/niveaux.php");
         exit();
-        break;
+
 
     case 'noteCoor':
         session_start();
@@ -50,7 +50,7 @@ switch ($_GET['action'])
         var_dump($obj->GetNivbyIdUs($id));
         header("location:../views/coordinateur/listeniveaux.php");
         exit();
-        break;
+
     case 'emploi':
         require_once '../controllers/loginController.php';
         $obj=new Getelement();
@@ -59,7 +59,7 @@ switch ($_GET['action'])
         // var_dump($obj->GetNivbyIdUs($id));
         header("location:../views/coordinateur/choisir-niveau.php");
         exit();
-        break;
+
 
 
         
@@ -76,7 +76,7 @@ switch ($_GET['action'])
             $_SESSION['modules_Specifique_Prof']=$test1->getmodbyidprof($test['IdProf']);
             header("location:../views/prof/ConsulterListeModules.php");
             exit();
-            break;
+
         case 'profNote':
             session_start();
             // recuperation de id  prof
@@ -93,7 +93,7 @@ switch ($_GET['action'])
             echo "<br>";
             header("location:../views/prof/noteEtu.php");
             exit();
-            break;
+
         //chef departement
             
         case 'Gestiondemodule':
@@ -108,7 +108,6 @@ switch ($_GET['action'])
             $_SESSION['dispModules'] = $disp->getmod($idUtilisateur['idDep']);
             header("location:../views/chef_dep/gestionModule.php");
             exit();
-            break;
 
 
 }
@@ -194,44 +193,48 @@ switch ($_GET['action'])
 
         if (isset($_POST['validerVer'])) {
             session_start();
+            $etudiants = null;
             if (isset($_SESSION['listesEtudiant'])) {
                 $etudiants = $_POST['etudiants'];
                 $_SESSION['etudiantsids'] = $_POST['etudiants'];
                 $success = true;
-                // var_dump($etudiants);
-                               
+            }
             foreach ($etudiants as $etudiant) {
+                if($etudiant['validation'] == 1){
+                    $success = false;
+                    break;
+                }
                 // Ensure all keys are set before accessing them
-                if (isset($etudiant['id'], $etudiant['note'], $etudiant['md'], $etudiant['pr'],$etudiant['validation'])) {
-                    $idetud = htmlspecialchars($etudiant['id']);
-                    // $note = htmlspecialchars($etudiant['note']);
-                    $idmodule = (int) htmlspecialchars($etudiant['md']);
-                    $idprof = (int) htmlspecialchars($etudiant['pr']);
-                    $idverif=(int)1;
-                    var_dump($etudiant['validation']);
-                    require_once('../controllers/ControllerNote.php');
-                    $obj = new ControllerNote;
-                    $res = $obj->NoteV($idverif, $idprof, $idmodule, $idetud);
-                    var_dump($res);
-                    
-                    if (!$res) {
-                        $success = false;
+               else {
+                    if (isset($etudiant['id'], $etudiant['note'], $etudiant['md'], $etudiant['pr'], $etudiant['validation'])) {
+                        $idetud = htmlspecialchars($etudiant['id']);
+                        // $note = htmlspecialchars($etudiant['note']);
+                        $idmodule = (int)htmlspecialchars($etudiant['md']);
+                        $idprof = (int)htmlspecialchars($etudiant['pr']);
+                        $idverif = 1;
+                        var_dump($etudiant['validation']);
+                        require_once('../controllers/ControllerNote.php');
+                        $obj = new ControllerNote;
+                        $res = $obj->NoteV($idverif, $idprof, $idmodule, $idetud);
+                        var_dump($res);
+
+                        if (!$res) {
+                            $success = false;
+                        }
                     }
-                } else {
-                    $success = false; // If any key is missing, mark success as false
                 }
             }
-            }if ($success) {
+            if ($success) {
                 $_SESSION['message'] = "INSERTION DES NOTES AVEC SUCCES";
                 $_SESSION['message_type'] = "success";
                 $_SESSION['inserer_note'] = true;
-              
-              } else {
-                $_SESSION['message'] = "There was an error submitting the notes.";
-                $_SESSION['message_type'] = "error";
-              }
-           
+                echo "<script type='text/javascript'>alert('INSERTION DES NOTES AVEC SUCCES'); window.location.href='../views/coordinateur/listeModNiv.php';</script>";
+            } else {
+                echo "<script type='text/javascript'>alert('NOTES DEJA VALIDES'); window.location.href='../views/coordinateur/listeModNiv.php';</script>";
+            }
+            exit();
         }
+
         
 // prof les notes
             // listes des etudiants

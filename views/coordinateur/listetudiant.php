@@ -108,11 +108,12 @@ function exportCsv($data) {
 </head>
 <body>
     <header class="header">
+
         <?php require_once '../navigations/navigation_coor.php';?>
     </header>
     <main class="main">
         <h1>Tables des ETUDIANTS :</h1>
-        <form action="" method="post">
+        <form action="../../routing/routing.php" method="post">
             <table class="table table-warning table-striped table-hover text-center">
                 <thead>
                     <tr>
@@ -138,7 +139,7 @@ function exportCsv($data) {
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][id]' value='" . htmlspecialchars($Etudiants['IdEtudiant']) . "'>";
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][pr]' value='" . htmlspecialchars($Etudiants['idprof']) . "'>";
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][md]' value='" . htmlspecialchars($Etudiants['idmodule']) . "'>";
-                                echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][validation]' value='" . htmlspecialchars($Etudiants['verif']) . "'>";
+                                echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][validation]' value='" . htmlspecialchars($Etudiants['verif']==null? 0:1) . "'>";
                                 echo "<input type='hidden' name='etudiants[" . htmlspecialchars($Etudiants['IdEtudiant']) . "][note]' value='" . htmlspecialchars($Etudiants['valeurs']) . "'>";
                                 $counter++;
                             } else {
@@ -152,6 +153,7 @@ function exportCsv($data) {
                     ?>
                 </tbody>
             </table>
+
             <button class="btn btn-primary" type="submit" name="validerVer" value="valider">Valider</button>
             <button class="btn btn-secondary" type="submit" name="export_csv" value="export_csv">Export CSV</button>
             <?php

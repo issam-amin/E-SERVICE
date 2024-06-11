@@ -1,5 +1,5 @@
 <?php
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'\WEB_PROJECT\config\Database.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'\config\Database.php');
 class Modules{
 
 

@@ -1,5 +1,5 @@
 <?php
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'\WEB_PROJECT\models\Modules.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'\models\Modules.php');
 class ControllerModules
 {
     private $modules;
